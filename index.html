@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Віталій Кадуха — Викладач Програмування та Робототехніки</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+                        accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(20px, -30px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
+                        ВК
+                    </div>
+                    <span class="font-extrabold text-xl tracking-tight text-slate-900">Віталій Кадуха</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Про мене</a>
+                    <a href="#achievements" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Досягнення</a>
+                    <a href="#services" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Послуги та Ціни</a>
+                    <a href="#contact" class="px-6 py-2.5 rounded-full bg-brand-600 text-white font-bold hover:bg-brand-700 shadow-md shadow-brand-500/20 transition-all hover:-translate-y-0.5">Записатися</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-600 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#about" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Про мене</a>
+                <a href="#achievements" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Досягнення</a>
+                <a href="#services" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Послуги та Ціни</a>
+                <a href="#contact" class="mobile-nav-link block text-center mt-4 px-4 py-3 rounded-xl text-base font-bold bg-brand-600 text-white shadow-md">Записатися на урок</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden relative bg-white">
+        <!-- Subtle Background Pattern -->
+        <div class="absolute inset-0 z-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-200 text-brand-700 font-bold text-xs sm:text-sm shadow-sm animate-fade-in-up">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+                        Сертифікований Тренер Малої Академії Наук
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] animate-fade-in-up" style="animation-delay: 0.1s;">
+                        Перетворіть захоплення іграми на <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-accent-500">успішну IT-професію</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
+                        Допомагаю дітям розвинути логіку, алгоритмічне мислення та впевненість. Не просто суха теорія, а створення власних ігор та роботів, які <strong class="text-slate-800">перемагають на міжнародних олімпіадах у США</strong>.
+                    </p>
+
+                    <!-- Trust Indicators -->
+                    <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center lg:justify-start pt-2 animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="flex items-center gap-2 text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span class="font-bold text-sm">100% Практика</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
+                            <i class="fa-solid fa-trophy text-accent-500"></i>
+                            <span class="font-bold text-sm">Переможці в США</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
+                            <i class="fa-solid fa-graduation-cap text-brand-500"></i>
+                            <span class="font-bold text-sm">Досвід 4+ роки</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-base shadow-xl shadow-brand-600/30 transition-all hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                            Записатися на урок <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://t.me/kadukha_vitaliy" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-base shadow-xl shadow-blue-500/30 transition-all hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-telegram text-xl"></i> Написати в Telegram
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Image/Visual -->
+                <div class="lg:col-span-5 relative mt-8 lg:mt-0 pb-8 sm:pb-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="relative mx-auto max-w-sm lg:max-w-md">
+                        <!-- Decorative Blobs -->
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-accent-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                        <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-brand-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" style="animation-delay: 2s;"></div>
+                        
+                        <!-- Main Image Container -->
+                        <div class="relative z-10 rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-white group">
+                            
+                            <!-- ========================================== -->
+                            <!-- ІНСТРУКЦІЯ: ЯК ВСТАВИТИ СВОЄ ФОТО -->
+                            <!-- Замініть посилання в атрибуті src="..." нижче на пряме посилання на ваше фото. -->
+                            <!-- Наприклад: src="https://example.com/moye-foto.jpg" -->
+                            <!-- ========================================== -->
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Віталій Кадуха" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
+                            
+                            <!-- Floating Badge 1 -->
+                            <div class="absolute bottom-6 left-[-10px] sm:left-[-20px] bg-white p-3 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-100 animate-bounce" style="animation-duration: 3s;">
+                                <div class="w-10 h-10 rounded-full bg-accent-50 text-accent-500 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-medal"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Тренер Чемпіонів</div>
+                                    <div class="text-slate-800 font-black text-sm">GENIUS Olympiad</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Badge 2 -->
+                            <div class="absolute top-6 right-[-10px] sm:right-[-20px] bg-white p-2.5 rounded-2xl shadow-xl flex items-center gap-2 border border-slate-100">
+                                <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="pr-2">
+                                    <div class="text-slate-800 font-black text-sm">5.0</div>
+                                    <div class="text-[10px] text-slate-500 font-bold uppercase">Рейтинг</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Skills Section -->
+    <section id="about" class="py-20 bg-slate-50 border-t border-slate-200 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Більше ніж просто репетитор</h2>
+                <div class="h-1.5 w-20 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 text-lg">Створюю освітнє середовище, де технології стають інструментом для розкриття потенціалу кожної дитини.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                <!-- Left: Experience Text -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">Освіта та База</h3>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Студент 4 курсу Черкаського національного університету ім. Б. Хмельницького (Диплом Бакалавра з відзнакою). Спеціальність: Середня освіта (Інформатика).
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">Досвід Викладання</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>ФІМЛІ:</strong> Вчитель робототехніки та технологій (2023-2025)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>SMART UP:</strong> Вчитель інформатики, математики, програмування</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>ЗМІСТОВНО:</strong> Вчитель технологій та інформатики</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                                <span><strong>Академія Покоління ІТ:</strong> Онлайн курси Minecraft Education</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right: Sleek Skill Bars (Replaced Chart.js) -->
+                <div class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden">
+                    <!-- Decorative background element -->
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-50 rounded-full opacity-50 pointer-events-none"></div>
+
+                    <div class="flex items-center justify-between mb-8 relative z-10">
+                        <h3 class="text-2xl font-extrabold text-slate-900">Професійний Стек</h3>
+                        <span class="text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-900 text-white">Hard Skills</span>
+                    </div>
+                    
+                    <div class="space-y-6 relative z-10">
+                        <!-- Skill 1 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-cube text-brand-500"></i> Tinkercad 3D & Roblox Studio</span>
+                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
+                                <div class="bg-gradient-to-r from-brand-600 to-brand-400 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 2 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-gamepad text-accent-500"></i> Scratch & Minecraft Education</span>
+                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
+                                <div class="bg-gradient-to-r from-accent-600 to-accent-400 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 3 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="font-bold text-slate-800 flex items-center gap-2" title="Інтенсивний розвиток логічного мислення"><i class="fa-solid fa-gamepad text-emerald-500"></i> Початкова робототехніка (Minecraft Edu)</span>
+                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
+                                <div class="bg-gradient-to-r from-emerald-500 to-emerald-400 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-500 mt-1 font-medium">* Сильно розвивається логіка та алгоритмічне мислення</p>
+                        </div>
+
+                        <!-- Skill 4 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-calculator text-slate-500"></i> Математика та Інформатика</span>
+                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
+                                <div class="bg-gradient-to-r from-slate-600 to-slate-400 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Досягнення на Міжнародній Арені</h2>
+                <div class="h-1.5 w-20 bg-accent-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 text-lg">Мої учні не просто вчаться — вони створюють проєкти, які перемагають на найпрестижніших світових конкурсах.</p>
+            </div>
+
+            <!-- Grid of Clickable Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1: GENIUS 2025 -->
+                <a href="https://mon.gov.ua/news/ukrainski-shkoliari-zdobuly-17-nahorod-na-mizhnarodnii-olimpiadi-heniiv-u-ssha" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
+                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </div>
+                    <div class="relative h-40 overflow-hidden flex items-center justify-center p-6 text-center">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="USA Competition" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-brand-900/60 group-hover:bg-brand-900/40 transition-colors"></div>
+                        <i class="fa-solid fa-medal text-5xl text-amber-400 relative z-10 drop-shadow-lg group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute top-2 right-2 z-10 bg-amber-400 text-slate-900 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wide">
+                            1 місце
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Київ / США (2025)</div>
+                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">GENIUS Olympiad 2025</h3>
+                            <p class="text-slate-500 text-xs mt-2">1 місце та Гран-прі. Публікація на сайті МОН України.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-slate-400">mon.gov.ua</span>
+                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: FTC Italy -->
+                <a href="https://www.firsttechchallenge.it/" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
+                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </div>
+                    <div class="relative h-40 overflow-hidden flex items-center justify-center p-6 text-center">
+                        <img src="https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Robotics" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-slate-800/70 group-hover:bg-slate-800/50 transition-colors"></div>
+                        <i class="fa-solid fa-robot text-5xl text-white relative z-10 drop-shadow-lg group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Італія (2025)</div>
+                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">FIRST Tech Challenge</h3>
+                            <p class="text-slate-500 text-xs mt-2">Офіційний ментор команди "CORE UKRAINE" на Чемпіонаті Італії.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-slate-400">Офіційний сайт</span>
+                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: GENIUS 2024 -->
+                <a href="https://www.ukr.net/news/details/sport/111923280.html" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
+                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </div>
+                    <div class="relative h-40 overflow-hidden flex items-center justify-center p-6 text-center">
+                        <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Award" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-brand-900/60 group-hover:bg-brand-900/40 transition-colors"></div>
+                        <i class="fa-solid fa-trophy text-5xl text-accent-400 relative z-10 drop-shadow-lg group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute top-2 right-2 z-10 bg-accent-500 text-white px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wide">
+                            США
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Рочестер, США (2024)</div>
+                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">GENIUS Olympiad 2024</h3>
+                            <p class="text-slate-500 text-xs mt-2">Тренер команди переможців на глобальному фіналі (ЗМІ).</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-slate-400">ukr.net</span>
+                            <span class="text-brand-600">Читати <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4: INFOMATRIX -->
+                <a href="https://infomatrix.ua/" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
+                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </div>
+                    <div class="relative h-40 overflow-hidden flex items-center justify-center p-6 text-center">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tech" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-slate-800/70 group-hover:bg-slate-800/50 transition-colors"></div>
+                        <i class="fa-solid fa-microchip text-5xl text-emerald-400 relative z-10 drop-shadow-lg group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Київ / США (2025)</div>
+                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">GENIUS Olympiad 2025</h3>
+                            <p class="text-slate-500 text-xs mt-2">1 місце та Гран-прі. Публікація на сайті МОН України.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-slate-400">mon.gov.ua</span>
+                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: FTC Italy -->
+                <a href="https://www.firsttechchallenge.it/" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
+                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </div>
+                    <div class="relative h-40 bg-slate-800 overflow-hidden flex items-center justify-center p-6 text-center">
+                        <i class="fa-solid fa-robot text-6xl text-white group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Італія (2025)</div>
+                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">FIRST Tech Challenge</h3>
+                            <p class="text-slate-500 text-xs mt-2">Офіційний ментор команди "CORE UKRAINE" на Чемпіонаті Італії.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-slate-400">Офіційний сайт</span>
+                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: GENIUS 2024 -->
+                <a href="https://www.ukr.net/news/details/sport/111923280.html" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
+                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </div>
+                    <div class="relative h-40 bg-brand-900 overflow-hidden flex items-center justify-center p-6 text-center">
+                        <i class="fa-solid fa-trophy text-6xl text-accent-400 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute top-2 right-2 bg-accent-500 text-white px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wide">
+                            США
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Рочестер, США (2024)</div>
+                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">GENIUS Olympiad 2024</h3>
+                            <p class="text-slate-500 text-xs mt-2">Тренер команди переможців на глобальному фіналі (ЗМІ).</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-slate-400">ukr.net</span>
+                            <span class="text-brand-600">Читати <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4: INFOMATRIX -->
+                <a href="https://infomatrix.ua/" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
+                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </div>
+                    <div class="relative h-40 bg-slate-800 overflow-hidden flex items-center justify-center p-6 text-center">
+                        <i class="fa-solid fa-microchip text-6xl text-emerald-400 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Київ (2024)</div>
+                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">INFOMATRIX UKRAINE</h3>
+                            <p class="text-slate-500 text-xs mt-2">Керівник робототехнічного проєкту у фінальному етапі.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-slate-400">infomatrix.ua</span>
+                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Services -->
+    <section id="services" class="py-20 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Напрямки та Ціни</h2>
+                <div class="h-1.5 w-20 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 text-lg">Прозоре ціноутворення в євро. Усі заняття тривають рівно 60 хвилин для максимальної концентрації та ефективності.</p>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <!-- Card: Інформатика -->
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 text-center hover:border-brand-400 hover:shadow-xl transition-all relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-brand-600 mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-computer"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Інформатика</h3>
+                    <p class="text-sm text-slate-500 mb-6 h-10">Шкільна програма та комп'ютерна грамотність</p>
+                    <div class="flex items-baseline justify-center gap-1">
+                        <span class="text-4xl font-extrabold text-slate-900">15€</span>
+                        <span class="text-slate-500 font-medium">/ 60 хв</span>
+                    </div>
+                </div>
+
+                <!-- Card: Робототехніка -->
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 text-center hover:border-accent-400 hover:shadow-xl transition-all relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-accent-500 mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Початкова робототехніка</h3>
+                    <p class="text-sm text-slate-500 mb-6 h-10">На основі Minecraft Edu, розвиток логіки</p>
+                    <div class="flex items-baseline justify-center gap-1">
+                        <span class="text-4xl font-extrabold text-slate-900">15€</span>
+                        <span class="text-slate-500 font-medium">/ 60 хв</span>
+                    </div>
+                </div>
+
+                <!-- Card: Математика -->
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 text-center hover:border-emerald-400 hover:shadow-xl transition-all relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-emerald-500 mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Математика</h3>
+                    <p class="text-sm text-slate-500 mb-6 h-10">Підтягування знань, підготовка до тестів</p>
+                    <div class="flex items-baseline justify-center gap-1">
+                        <span class="text-4xl font-extrabold text-slate-900">20€</span>
+                        <span class="text-slate-500 font-medium">/ 60 хв</span>
+                    </div>
+                </div>
+
+                <!-- Card: Програмування -->
+                <div class="bg-brand-600 rounded-3xl p-6 sm:p-8 border border-brand-500 text-center shadow-xl relative overflow-hidden transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">TOP</div>
+                    <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl text-white mx-auto mb-6 backdrop-blur-sm">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Програмування</h3>
+                    <p class="text-sm text-brand-100 mb-6 h-10">Scratch, Roblox, Minecraft, створення ігор</p>
+                    <div class="flex items-baseline justify-center gap-1 text-white">
+                        <span class="text-4xl font-extrabold">20€</span>
+                        <span class="text-brand-200 font-medium">/ 60 хв</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Calculator -->
+            <div class="bg-slate-900 rounded-3xl p-8 lg:p-12 shadow-2xl relative overflow-hidden max-w-4xl mx-auto">
+                <!-- Background decorations -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-500 via-accent-500 to-brand-500"></div>
+                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-brand-600 rounded-full mix-blend-overlay filter blur-3xl opacity-30 pointer-events-none"></div>
+                
+                <div class="text-center mb-10 relative z-10">
+                    <h3 class="text-2xl font-bold text-white mb-2"><i class="fa-solid fa-calculator text-accent-500 mr-2"></i>Калькулятор Абонемента</h3>
+                    <p class="text-slate-400 text-sm">Розрахуйте вартість місячного навчання (4 тижні)</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                    <!-- Controls -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Оберіть напрямок:</label>
+                            <select id="calc-subject" onchange="calculateCost()" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors appearance-none cursor-pointer">
+                                <option value="15">Інформатика (15€ / 60 хв)</option>
+                                <option value="15">Початкова робототехніка (15€ / 60 хв)</option>
+                                <option value="20">Математика (20€ / 60 хв)</option>
+                                <option value="20" selected>Програмування (20€ / 60 хв)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2 flex justify-between">
+                                <span>Занять на тиждень:</span>
+                                <span id="freq-badge" class="text-accent-400 text-xs font-bold"></span>
+                            </label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button onclick="setFreq(1)" id="btn-freq-1" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">1 раз</button>
+                                <button onclick="setFreq(2)" id="btn-freq-2" class="freq-btn bg-brand-600 border border-brand-500 text-white py-3 rounded-xl font-medium hover:bg-brand-700 transition-colors shadow-lg shadow-brand-500/20">2 рази</button>
+                                <button onclick="setFreq(3)" id="btn-freq-3" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">3 рази</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700 rounded-2xl p-6 flex flex-col justify-center items-center text-center">
+                        <div class="text-slate-400 text-sm mb-1 uppercase tracking-wider font-bold">Вартість за місяць (4 тижні)</div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div id="calc-old-price" class="text-xl text-slate-500 line-through font-medium hidden">300€</div>
+                            <div class="text-5xl font-extrabold text-white"><span id="calc-total">160</span><span class="text-3xl text-brand-400">€</span></div>
+                        </div>
+                        <div id="calc-discount-msg" class="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-3 py-1 rounded-full mb-6 hidden">
+                            Знижка застосована
+                        </div>
+                        <a href="#contact" onclick="prefillForm()" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl transition-colors shadow-lg flex justify-center items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Залишити заявку
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Form Section -->
+    <section id="contact" class="py-20 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+                <div class="bg-brand-600 p-8 text-center text-white">
+                    <h2 class="text-3xl font-extrabold mb-2">Зв'яжіться зі мною</h2>
+                    <p class="text-brand-100">Залиште заявку, і я підберу ідеальний формат навчання для вашої дитини.</p>
+                </div>
+                
+                <form id="booking-form" onsubmit="submitForm(event)" class="p-8 sm:p-10 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Ім'я батьків</label>
+                            <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Телефон</label>
+                            <input type="tel" value="+380" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Вік дитини</label>
+                            <input type="number" min="5" max="18" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all" placeholder="Наприклад: 10">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Клас</label>
+                            <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all" placeholder="Наприклад: 5-Б">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Нік Telegram батьків</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-3.5 text-slate-400 font-bold">@</span>
+                                <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all" placeholder="username">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Цікавить напрямок</label>
+                            <select id="form-subject" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                                <option>Математика</option>
+                                <option>Інформатика</option>
+                                <option>Програмування (Roblox, Scratch)</option>
+                                <option>Початкова робототехніка (Minecraft Edu)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-0.5 flex justify-center items-center gap-2">
+                        Відправити Заявку <i class="fa-solid fa-check-circle"></i>
+                    </button>
+                    
+                    <div class="text-center text-sm font-semibold text-slate-600 mt-6 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+                        <a href="https://t.me/kadukha_vitaliy" target="_blank" class="flex items-center gap-2 hover:text-[#0088cc] transition-colors bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
+                            <i class="fa-brands fa-telegram text-[#0088cc] text-xl"></i> @kadukha_vitaliy
+                        </a>
+                        <a href="mailto:kadukha.vitaliy@ukr.net" class="flex items-center gap-2 hover:text-brand-600 transition-colors bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
+                            <i class="fa-solid fa-envelope text-brand-500 text-xl"></i> kadukha.vitaliy@ukr.net
+                        </a>
+                        <a href="tel:+380979818242" class="flex items-center gap-2 hover:text-brand-600 transition-colors bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
+                            <i class="fa-solid fa-phone text-brand-500 text-xl"></i> +380 97 981 8242
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2025 Віталій Кадуха. Всі права захищено.</p>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="modal-success" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeSuccessModal()"></div>
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4 relative z-10 text-center shadow-2xl transform scale-100 transition-transform">
+            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center text-4xl text-emerald-500 mx-auto mb-6">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Дякую за заявку!</h3>
+            <p class="text-slate-600 mb-8">Я отримав ваші контакти і зателефоную вам найближчим часом для узгодження деталей.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition-colors">
+                Чудово
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('py-2', 'py-0');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('py-0', 'py-2');
+            }
+        });
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-nav-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            const icon = btn.querySelector('i');
+            if(menu.classList.contains('hidden')){
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                btn.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
+
+        // Calculator State
+        let currentFreq = 2; // Default 2 times a week
+
+        function setFreq(freq) {
+            currentFreq = freq;
+            
+            // Update UI buttons
+            document.querySelectorAll('.freq-btn').forEach(b => {
+                b.classList.remove('bg-brand-600', 'border-brand-500', 'shadow-lg');
+                b.classList.add('bg-slate-800', 'border-slate-700');
+            });
+            const activeBtn = document.getElementById(`btn-freq-${freq}`);
+            activeBtn.classList.remove('bg-slate-800', 'border-slate-700');
+            activeBtn.classList.add('bg-brand-600', 'border-brand-500', 'shadow-lg');
+
+            calculateCost();
+        }
+
+        function calculateCost() {
+            const priceElement = document.getElementById('calc-subject');
+            const pricePerLesson = parseInt(priceElement.value);
+            
+            // Base cost for 4 weeks
+            const baseMonthly = pricePerLesson * currentFreq * 4;
+            let finalCost = baseMonthly;
+            let discount = 0;
+            let badgeText = "";
+
+            // Apply discounts
+            if (currentFreq === 2) {
+                discount = 0.05; // 5% discount
+                badgeText = "-5%";
+            } else if (currentFreq === 3) {
+                discount = 0.10; // 10% discount
+                badgeText = "-10%";
+            }
+
+            finalCost = Math.round(baseMonthly * (1 - discount));
+
+            // Update UI Elements
+            document.getElementById('calc-total').innerText = finalCost;
+            
+            const oldPriceEl = document.getElementById('calc-old-price');
+            const msgEl = document.getElementById('calc-discount-msg');
+            const badgeEl = document.getElementById('freq-badge');
+
+            if (discount > 0) {
+                oldPriceEl.innerText = `${baseMonthly}€`;
+                oldPriceEl.classList.remove('hidden');
+                msgEl.innerText = `Економія ${baseMonthly - finalCost}€ на місяць`;
+                msgEl.classList.remove('hidden');
+                badgeEl.innerText = badgeText;
+            } else {
+                oldPriceEl.classList.add('hidden');
+                msgEl.classList.add('hidden');
+                badgeEl.innerText = "";
+            }
+        }
+
+        function prefillForm() {
+            const subjectSelect = document.getElementById('calc-subject');
+            const selectedText = subjectSelect.options[subjectSelect.selectedIndex].text.split('(')[0].trim();
+            
+            const formSubject = document.getElementById('form-subject');
+            for(let i=0; i<formSubject.options.length; i++) {
+                if(formSubject.options[i].text.includes(selectedText)) {
+                    formSubject.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            document.getElementById('modal-success').classList.remove('hidden');
+            document.getElementById('modal-success').classList.add('flex');
+            e.target.reset();
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('modal-success').classList.add('hidden');
+            document.getElementById('modal-success').classList.remove('flex');
+        }
+
+        // Init
+        window.addEventListener('DOMContentLoaded', () => {
+            calculateCost();
+        });
+    </script>
+</body>
+</html>
