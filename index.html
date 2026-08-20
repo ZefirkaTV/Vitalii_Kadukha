@@ -178,7 +178,6 @@
                 <p class="text-slate-600 text-lg">Жодної сухої теорії. Тільки практичні навички, які формують мислення майбутнього інженера.</p>
             </div>
 
-            <!-- Benefit Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl mb-6">
@@ -459,7 +458,6 @@
                 <p class="text-slate-600 text-lg">Прозоре ціноутворення в євро. Усі заняття тривають рівно 60 хвилин.</p>
             </div>
 
-            <!-- Pricing Cards with Package Breakdown -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 text-center hover:border-brand-400 hover:shadow-xl transition-all relative overflow-hidden group">
                     <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-brand-600 mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
@@ -543,9 +541,9 @@
                                 <span id="freq-badge" class="text-accent-400 text-xs font-bold"></span>
                             </label>
                             <div class="grid grid-cols-3 gap-3">
-                                <button onclick="setFreq(1)" id="btn-freq-1" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">1 раз</button>
-                                <button onclick="setFreq(2)" id="btn-freq-2" class="freq-btn bg-brand-600 border border-brand-500 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors shadow-lg shadow-brand-500/20">2 рази</button>
-                                <button onclick="setFreq(3)" id="btn-freq-3" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">3 рази</button>
+                                <button type="button" onclick="setFreq(1)" id="btn-freq-1" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">1 раз</button>
+                                <button type="button" onclick="setFreq(2)" id="btn-freq-2" class="freq-btn bg-brand-600 border border-brand-500 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors shadow-lg shadow-brand-500/20">2 рази</button>
+                                <button type="button" onclick="setFreq(3)" id="btn-freq-3" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">3 рази</button>
                             </div>
                         </div>
                     </div>
@@ -756,8 +754,14 @@
             }
         }
 
+        // Захист від повторних відправок
+        let isSubmitting = false;
+
         async function submitForm(e) {
             e.preventDefault();
+
+            if (isSubmitting) return; // Якщо вже відправляється, блокуємо повторний клік
+            isSubmitting = true;
 
             const BOT_TOKEN = '8682189991:AAGsGtJ6tY_drdFlxg4eclzrrm1PSfCQaEw';
             const CHAT_ID = '-5338754410';
@@ -808,6 +812,7 @@
             } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
+                isSubmitting = false; // Знімаємо блокування після завершення
             }
         }
 
