@@ -1,889 +1,1300 @@
 <!DOCTYPE html>
-<html lang="uk" class="scroll-smooth">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Віталій Кадуха — Викладач Програмування та Робототехніки</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>BlokodSchool — програмування для дітей у Minecraft Education</title>
+    <meta name="description" content="BlokodSchool — школа програмування в Minecraft Education. 3 курси по 16 уроків: від перших команд до Redstone і смарт-будинків. Тренер дворазових переможців GENIUS Olympiad (США).">
+    <meta property="og:title" content="BlokodSchool — дитина вчиться програмувати в Minecraft">
+    <meta property="og:description" content="Програмування в Minecraft Education від тренера дворазових переможців GENIUS Olympiad. Запис на пробний урок.">
+    <meta property="og:image" content="img/usa-2025.jpg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0f1b2d">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f9e44'/%3E%3Crect x='7' y='7' width='8' height='8' fill='%23fff'/%3E%3Crect x='17' y='17' width='8' height='8' fill='%23fff'/%3E%3Crect x='17' y='7' width='8' height='8' fill='%23ffffff' fill-opacity='.4'/%3E%3Crect x='7' y='17' width='8' height='8' fill='%23ffffff' fill-opacity='.4'/%3E%3C/svg%3E">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
-                        accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' }
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(20px, -30px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        :root {
+            --ink: #0f1b2d;
+            --ink-2: #3d4b5f;
+            --ink-3: #6b7789;
+            --bg: #fbf8f2;
+            --bg-2: #f3eee3;
+            --card: #ffffff;
+            --line: #e8e1d3;
+            --green: #2f9e44;
+            --green-d: #1e7a32;
+            --green-l: #e5f5e9;
+            --sun: #ffc23d;
+            --sun-l: #fff3d1;
+            --tg: #229ed9;
+            --coral: #f0643c;
+            --radius: 22px;
+            --shadow: 0 1px 2px rgba(15,27,45,.04), 0 12px 32px -12px rgba(15,27,45,.14);
+            --font-d: 'Unbounded', system-ui, sans-serif;
+            --font: 'Manrope', system-ui, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+        body {
+            font-family: var(--font); background: var(--bg); color: var(--ink);
+            font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+        button, input, select { font: inherit; color: inherit; }
+        ::selection { background: var(--sun); color: var(--ink); }
+
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+        @media (min-width: 640px) { .wrap { padding: 0 28px; } }
+
+        h1, h2, h3 { font-family: var(--font-d); line-height: 1.15; letter-spacing: -.02em; }
+        h2 { font-size: clamp(28px, 4.2vw, 46px); font-weight: 800; }
+        h3 { font-size: 19px; font-weight: 700; }
+
+        section { padding: clamp(64px, 9vw, 112px) 0; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+            color: var(--green-d); margin-bottom: 14px;
+        }
+        .eyebrow::before { content: ""; width: 10px; height: 10px; background: var(--green); border-radius: 2px; }
+        .lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--ink-2); max-width: 660px; }
+        .head { margin-bottom: clamp(36px, 5vw, 56px); }
+        .head.center { text-align: center; }
+        .head.center .lead { margin: 16px auto 0; }
+        .head .lead { margin-top: 16px; }
+        mark { background: linear-gradient(transparent 58%, var(--sun) 58%, var(--sun) 92%, transparent 92%); color: inherit; padding: 0 .08em; }
+        .dark { background: var(--ink); color: #fff; }
+        .dark .eyebrow { color: var(--sun); }
+        .dark .eyebrow::before { background: var(--sun); }
+        .dark .lead { color: #b9c3d2; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 17px 28px; border-radius: 16px; border: 0; cursor: pointer;
+            font-weight: 800; font-size: 16px; line-height: 1.2; text-align: center;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s;
+        }
+        .btn-main { background: var(--green); color: #fff; box-shadow: 0 5px 0 var(--green-d), 0 14px 28px -10px rgba(47,158,68,.6); }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--green-d), 0 18px 32px -10px rgba(47,158,68,.6); }
+        .btn-main:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--green-d); }
+        .btn-tg { background: #fff; color: var(--ink); border: 2px solid var(--line); }
+        .btn-tg i { color: var(--tg); font-size: 20px; }
+        .btn-tg:hover { border-color: var(--tg); transform: translateY(-2px); }
+        .btn-sm { padding: 11px 18px; font-size: 14px; border-radius: 12px; }
+
+        /* Announcement */
+        .announce { background: var(--ink); color: #fff; font-size: 14px; font-weight: 600; text-align: center; padding: 10px 16px; }
+        .announce b { color: var(--sun); }
+        .announce a { text-decoration: underline; text-underline-offset: 3px; }
+
+        /* Nav */
+        .nav {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(251,248,242,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid transparent; transition: border-color .3s, box-shadow .3s;
+        }
+        .nav.scrolled { border-color: var(--line); box-shadow: 0 6px 24px -18px rgba(15,27,45,.4); }
+        .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-d); font-weight: 800; font-size: 19px; letter-spacing: -.02em; }
+        .logo-mark {
+            width: 40px; height: 40px; border-radius: 10px; background: var(--green);
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 7px;
+            box-shadow: inset 0 -4px 0 var(--green-d); flex-shrink: 0;
+        }
+        .logo-mark span { background: rgba(255,255,255,.9); border-radius: 1px; }
+        .logo-mark span:nth-child(2n) { background: rgba(255,255,255,.35); }
+        .logo em { font-style: normal; color: var(--green); }
+        .logo small { display: block; font-family: var(--font); font-weight: 600; font-size: 12px; color: var(--ink-3); letter-spacing: 0; }
+        .nav-links { display: none; gap: 28px; font-weight: 700; font-size: 15px; color: var(--ink-2); }
+        .nav-links a:hover { color: var(--green-d); }
+        @media (min-width: 980px) { .nav-links { display: flex; } }
+        .nav-cta { display: none; }
+        @media (min-width: 560px) { .nav-cta { display: inline-flex; } }
+
+        /* Hero */
+        .hero { padding: clamp(40px, 6vw, 80px) 0 clamp(56px, 7vw, 96px); position: relative; overflow: hidden; }
+        .hero-grid { display: grid; gap: 40px; align-items: center; }
+        @media (min-width: 980px) { .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 48px; } }
+        .pill {
+            display: inline-flex; align-items: center; gap: 10px; line-height: 1.3;
+            background: #fff; border: 1px solid var(--line); border-radius: 999px;
+            padding: 7px 16px 7px 8px; font-size: 14px; font-weight: 700; box-shadow: var(--shadow);
+        }
+        .pill .dot { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--sun-l); display: grid; place-items: center; font-size: 14px; }
+        .hero h1 { font-size: clamp(34px, 5.4vw, 62px); font-weight: 800; margin: 22px 0; }
+        .hero .lead { font-size: clamp(17px, 1.8vw, 20px); }
+        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+        .hero-cta .btn { flex: 1 1 240px; }
+        @media (min-width: 640px) { .hero-cta .btn { flex: 0 0 auto; } }
+        .hero-note { margin-top: 18px; font-size: 14px; color: var(--ink-3); font-weight: 600; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+        .hero-note span { display: inline-flex; align-items: center; gap: 6px; }
+        .hero-note i { color: var(--green); }
+
+        /* Voxel scene */
+        .scene { position: relative; max-width: 520px; margin: 0 auto; width: 100%; }
+        .scene-bg { position: absolute; inset: 6% 4% 10%; border-radius: 40px; background: radial-gradient(circle at 50% 40%, #dff2ff 0%, #eaf6ef 55%, transparent 72%); }
+        .scene svg { position: relative; width: 100%; height: auto; overflow: visible; }
+        .scene .hover-blk { animation: place 3.2s ease-in-out infinite; }
+        .scene .cloud { animation: cloud 14s ease-in-out infinite alternate; }
+        @keyframes place { 0%,100% { transform: translateY(-18px); } 50% { transform: translateY(-4px); } }
+        @keyframes cloud { from { transform: translateX(-30px); } to { transform: translateX(30px); } }
+
+        .code-card {
+            position: absolute; left: 0; bottom: 4%; background: #fff; border-radius: 18px; padding: 14px;
+            box-shadow: 0 22px 44px -16px rgba(15,27,45,.35); font-size: 13px; font-weight: 800;
+            display: grid; gap: 5px; animation: bob 6s ease-in-out infinite;
+        }
+        .code-card .cb { color: #fff; padding: 7px 12px; border-radius: 8px; display: flex; gap: 6px; align-items: center; white-space: nowrap; }
+        .cb.c1 { background: #2f9e44; }
+        .cb.c2 { background: #4c97ff; margin-left: 14px; }
+        .cb.c3 { background: #d65cd6; margin-left: 28px; }
+        .cb.c4 { background: #ff8c1a; margin-left: 28px; }
+        .cb b { background: rgba(255,255,255,.25); padding: 1px 7px; border-radius: 99px; font-weight: 800; }
+        .coach-card {
+            position: absolute; right: 0; top: 2%; background: #fff; border-radius: 18px; padding: 10px 14px 10px 10px;
+            box-shadow: 0 22px 44px -16px rgba(15,27,45,.35); display: flex; gap: 10px; align-items: center;
+            font-size: 13px; font-weight: 700; line-height: 1.3; animation: bob 6s ease-in-out infinite; animation-delay: -3s;
+        }
+        .coach-card img { width: 46px; height: 46px; border-radius: 12px; object-fit: cover; object-position: 50% 18%; }
+        .coach-card small { display: block; color: var(--ink-3); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+        .coach-card strong { font-family: var(--font-d); font-size: 13px; }
+        @media (max-width: 420px) { .code-card { font-size: 11.5px; padding: 10px; } .coach-card { padding: 8px 10px 8px 8px; } .coach-card img { width: 38px; height: 38px; } }
+        @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Trust */
+        .trust { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; padding: 22px 0; }
+        .trust-in { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 24px; }
+        @media (min-width: 900px) { .trust-in { grid-template-columns: repeat(4, 1fr); } }
+        .trust-item { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 700; line-height: 1.35; color: var(--ink-2); }
+        .trust-item i { font-size: 22px; width: 28px; text-align: center; flex-shrink: 0; }
+
+        /* Why Minecraft */
+        .why { display: grid; gap: 18px; }
+        @media (min-width: 900px) { .why { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+        .why-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; transition: transform .25s, box-shadow .25s; }
+        .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+        .why-card .ico { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-size: 22px; margin-bottom: 18px; box-shadow: inset 0 -4px 0 rgba(0,0,0,.08); }
+        .why-card p { color: var(--ink-2); font-size: 15.5px; margin-top: 8px; }
+
+        /* Before/after */
+        .ba { display: grid; gap: 18px; }
+        @media (min-width: 860px) { .ba { grid-template-columns: 1fr 1fr; gap: 24px; } }
+        .ba-card { border-radius: var(--radius); padding: clamp(26px, 3.5vw, 40px); }
+        .ba-before { background: var(--bg-2); border: 1px dashed #d6ccb8; }
+        .ba-after { background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+        .ba-after::after { content: ""; position: absolute; width: 220px; height: 220px; right: -60px; top: -60px; background: var(--green); opacity: .25; border-radius: 40px; transform: rotate(18deg); }
+        .ba-card h3 { font-size: 22px; margin-bottom: 20px; }
+        .ba-card ul { list-style: none; display: grid; gap: 14px; position: relative; z-index: 1; }
+        .ba-card li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; }
+        .ba-card li i { margin-top: 5px; flex-shrink: 0; }
+        .ba-before li { color: var(--ink-2); }
+        .ba-before li i { color: #b3a68c; }
+        .ba-after li i { color: var(--sun); }
+
+        /* Courses */
+        .courses { display: grid; gap: 18px; }
+        @media (min-width: 960px) { .courses { grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; } }
+        .course { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 28px 26px; position: relative; }
+        .course.hot { background: #fff; color: var(--ink); border-color: #fff; }
+        .course .lvl { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .course .lvl span { font-size: 28px; width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.08); }
+        .course.hot .lvl span { background: var(--green-l); }
+        .course .num { font-family: var(--font-d); font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--sun); }
+        .course.hot .num { color: var(--green-d); }
+        .course h3 { font-size: 22px; margin-bottom: 10px; }
+        .course > p { color: #b9c3d2; font-size: 15.5px; }
+        .course.hot > p { color: var(--ink-2); }
+        .course .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+        .course .meta b { font-size: 12.5px; font-weight: 800; padding: 5px 10px; border-radius: 8px; background: rgba(255,255,255,.1); }
+        .course.hot .meta b { background: var(--bg-2); }
+        .course details { border-top: 1px solid rgba(255,255,255,.12); padding-top: 14px; }
+        .course.hot details { border-color: var(--line); }
+        .course summary { cursor: pointer; font-weight: 800; font-size: 14.5px; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--sun); }
+        .course.hot summary { color: var(--green-d); }
+        .course summary::-webkit-details-marker { display: none; }
+        .course summary::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 12px; transition: transform .25s; }
+        .course details[open] summary::after { transform: rotate(180deg); }
+        .course ol { margin-top: 12px; list-style: none; counter-reset: l; display: grid; gap: 6px; font-size: 14px; }
+        .course ol li { counter-increment: l; display: flex; gap: 10px; color: #d3dae5; }
+        .course.hot ol li { color: var(--ink-2); }
+        .course ol li::before { content: counter(l); flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; background: rgba(255,255,255,.1); display: grid; place-items: center; font-size: 11px; font-weight: 800; margin-top: 1px; }
+        .course.hot ol li::before { background: var(--green-l); color: var(--green-d); }
+        .tag { position: absolute; top: -12px; right: 22px; background: var(--sun); color: var(--ink); font-size: 12px; font-weight: 800; padding: 5px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; }
+
+        /* Projects */
+        .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        @media (min-width: 760px) { .projects { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+        .proj { border-radius: 20px; padding: 22px 18px; min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; border: 1px solid rgba(15,27,45,.06); transition: transform .25s; }
+        .proj:hover { transform: translateY(-4px) rotate(-.5deg); }
+        .proj .em { font-size: 34px; line-height: 1; }
+        .proj b { font-family: var(--font-d); font-size: clamp(14px, 1.5vw, 16px); font-weight: 700; line-height: 1.25; display: block; }
+        .proj small { font-size: 12.5px; font-weight: 700; color: var(--ink-2); opacity: .8; }
+        .platform-note { margin-top: 26px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+        .platform-note .ico { width: 52px; height: 52px; border-radius: 14px; background: var(--green-l); color: var(--green-d); display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+        .platform-note > div:not(.ico) { flex: 1 1 260px; }
+        .platform-note p { color: var(--ink-2); font-size: 15px; }
+
+        /* GENIUS */
+        .genius { position: relative; overflow: hidden; }
+        .genius::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.04) 2px, transparent 2px); background-size: 56px 56px; }
+        .genius .wrap { position: relative; }
+        .g-top { display: grid; gap: 40px; align-items: center; margin-bottom: 48px; }
+        @media (min-width: 960px) { .g-top { grid-template-columns: 1fr 1fr; gap: 56px; } }
+        .g-big { font-family: var(--font-d); font-weight: 800; font-size: clamp(72px, 11vw, 132px); line-height: .9; color: var(--sun); letter-spacing: -.04em; display: flex; align-items: flex-end; gap: 16px; }
+        .g-big small { font-size: clamp(15px, 2vw, 21px); color: #fff; letter-spacing: -.01em; line-height: 1.25; padding-bottom: 8px; }
+        .g-what { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 24px; margin-top: 26px; }
+        .g-what b { font-family: var(--font-d); font-size: 15px; color: var(--sun); display: block; margin-bottom: 6px; }
+        .g-what p { color: #c7cfdb; font-size: 15px; }
+        .g-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+        .g-nums div { background: rgba(255,255,255,.06); border-radius: 14px; padding: 14px 8px; text-align: center; }
+        .g-nums strong { font-family: var(--font-d); font-size: clamp(20px, 2.6vw, 28px); display: block; }
+        .g-nums span { font-size: 12px; color: #b9c3d2; font-weight: 600; }
+
+        .g-photo-main { position: relative; border-radius: 26px; overflow: hidden; border: 5px solid rgba(255,255,255,.9); box-shadow: 14px 14px 0 var(--sun); aspect-ratio: 720/665; max-width: 520px; margin: 0 auto; width: calc(100% - 14px); }
+        .g-photo-main img { width: 100%; height: 100%; object-fit: cover; }
+        .g-photo-main figcaption { position: absolute; left: 12px; bottom: 12px; right: 12px; background: rgba(15,27,45,.82); backdrop-filter: blur(6px); color: #fff; padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 700; }
+
+        .g-wins { display: grid; gap: 18px; }
+        @media (min-width: 860px) { .g-wins { grid-template-columns: 1fr 1fr; gap: 22px; } }
+        .win { background: #fff; color: var(--ink); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+        .win-img { height: 230px; position: relative; }
+        .win-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+        .win-img .yr { position: absolute; top: 14px; left: 14px; font-family: var(--font-d); font-weight: 800; font-size: 22px; background: var(--sun); padding: 4px 14px; border-radius: 12px; }
+        .win-body { padding: 24px 26px 26px; flex: 1; display: flex; flex-direction: column; }
+        .win-body h3 { font-size: 21px; margin-bottom: 12px; }
+        .win-body ul { list-style: none; display: grid; gap: 8px; font-size: 15px; color: var(--ink-2); flex: 1; }
+        .win-body li { display: flex; gap: 10px; }
+        .win-body li i { color: #e0a100; margin-top: 4px; width: 16px; text-align: center; flex-shrink: 0; }
+        .win-body a.src { margin-top: 18px; font-size: 14px; font-weight: 800; color: var(--green-d); display: inline-flex; gap: 8px; align-items: center; }
+        .win-body a.src:hover { text-decoration: underline; }
+
+        .g-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 22px; }
+        @media (min-width: 760px) { .g-strip { grid-template-columns: 1.4fr 1fr; } }
+        .g-strip figure { border-radius: 18px; overflow: hidden; position: relative; aspect-ratio: 16/10; }
+        .g-strip img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+        .g-strip figcaption { position: absolute; left: 10px; bottom: 10px; background: rgba(15,27,45,.8); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px; }
+
+        .mini-ach { display: grid; gap: 14px; margin-top: 22px; }
+        @media (min-width: 760px) { .mini-ach { grid-template-columns: 1fr 1fr; } }
+        .mini { display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 16px 18px; transition: background .2s; }
+        .mini:hover { background: rgba(255,255,255,.1); }
+        .mini .ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+        .mini b { display: block; font-size: 15.5px; }
+        .mini span { font-size: 13.5px; color: #b9c3d2; }
+
+        .g-meaning { margin-top: 32px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; background: var(--green); border-radius: var(--radius); padding: 22px 26px; }
+        .g-meaning .em { font-size: 34px; }
+        .g-meaning p { flex: 1 1 300px; font-weight: 700; font-size: 16.5px; }
+
+        /* Steps */
+        .steps { display: grid; gap: 16px; counter-reset: s; }
+        @media (min-width: 900px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+        .step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px; }
+        .step::before { counter-increment: s; content: counter(s); font-family: var(--font-d); font-weight: 800; font-size: 18px; width: 44px; height: 44px; border-radius: 12px; background: var(--sun); display: grid; place-items: center; margin-bottom: 18px; box-shadow: inset 0 -4px 0 rgba(0,0,0,.1); }
+        .step p { color: var(--ink-2); font-size: 15px; margin-top: 8px; }
+
+        /* About */
+        .about { display: grid; gap: 40px; align-items: center; }
+        @media (min-width: 960px) { .about { grid-template-columns: .9fr 1.1fr; gap: 64px; } }
+        .about-photo { border-radius: 28px; overflow: hidden; aspect-ratio: 4/3; box-shadow: -14px 14px 0 var(--green); border: 6px solid #fff; max-width: 520px; margin: 0 auto; width: calc(100% - 14px); }
+        .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .about blockquote { font-size: clamp(18px, 2vw, 21px); font-weight: 600; line-height: 1.55; border-left: 4px solid var(--green); padding-left: 20px; margin: 22px 0 28px; }
+        .timeline { display: grid; gap: 12px; }
+        .tl { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; font-size: 15px; }
+        .tl i { color: var(--green); margin-top: 4px; width: 18px; text-align: center; }
+        .tl b { font-weight: 800; }
+        .tl span { color: var(--ink-2); }
+
+        /* Reviews */
+        .reviews { display: grid; gap: 16px; }
+        @media (min-width: 860px) { .reviews { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+        .review { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+        .review .stars { color: var(--sun); margin-bottom: 12px; letter-spacing: 2px; }
+        .review p { font-size: 15.5px; color: var(--ink-2); }
+        .review footer { margin-top: 18px; font-weight: 800; font-size: 14px; }
+        .review footer span { display: block; font-weight: 600; color: var(--ink-3); font-size: 13px; }
+
+        /* Price */
+        .price-grid { display: grid; gap: 22px; align-items: stretch; }
+        @media (min-width: 900px) { .price-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
+        .plan { background: var(--ink); color: #fff; border-radius: 28px; padding: clamp(26px, 4vw, 40px); position: relative; overflow: hidden; }
+        .plan::after { content: ""; position: absolute; width: 200px; height: 200px; right: -50px; bottom: -50px; background: var(--green); opacity: .25; border-radius: 40px; transform: rotate(18deg); }
+        .plan > * { position: relative; z-index: 1; }
+        .plan { display: flex; flex-direction: column; overflow: visible; }
+        .plan .tag { position: absolute; z-index: 2; }
+        .plan::after { display: none; }
+        .plan .pk { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--sun); }
+        .plan h3 { font-size: 30px; margin-top: 8px; }
+        .plan .sub { color: #b9c3d2; margin-top: 8px; font-size: 15px; }
+        .plan .amount { font-family: var(--font-d); font-size: clamp(48px, 7vw, 64px); font-weight: 800; line-height: 1; margin: 4px 0 8px; white-space: nowrap; }
+        .plan .amount small { font-size: .45em; margin-left: 6px; }
+        .plan .old { margin-top: 22px; min-height: 26px; font-weight: 700; color: #7f8ba0; display: flex; align-items: center; gap: 10px; }
+        .plan .old .save { font-size: 13px; color: var(--ink); background: var(--sun); padding: 3px 9px; border-radius: 999px; }
+        .region { display: flex; gap: 6px; padding: 6px; background: var(--bg-2); border-radius: 18px; width: fit-content; max-width: 100%; margin: 0 auto 28px; }
+        .region button { border: 0; background: transparent; padding: 12px 18px; border-radius: 13px; font-weight: 800; font-size: 15px; cursor: pointer; color: var(--ink-2); transition: background .2s, color .2s, box-shadow .2s; }
+        .region button.on { background: #fff; color: var(--ink); box-shadow: 0 4px 14px -6px rgba(15,27,45,.3); }
+        .plan .per { color: #b9c3d2; font-size: 14px; font-weight: 700; }
+        .plan .incl { margin: 22px 0 26px; display: grid; gap: 10px; font-size: 15px; color: #d3dae5; flex: 1; align-content: start; }
+        .plan .incl div { display: flex; gap: 10px; }
+        .plan .incl i { color: var(--sun); margin-top: 5px; }
+        .plan .btn { width: 100%; }
+        .plan.light { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+        .plan.light .pk { color: var(--green-d); }
+        .plan.light .sub, .plan.light .per { color: var(--ink-3); }
+        .plan.light .incl { color: var(--ink-2); }
+        .plan.light .incl i { color: var(--green); }
+        .btn-ghost { background: var(--bg-2); color: var(--ink); }
+        .btn-ghost:hover { background: var(--green-l); }
+        .price-path { margin-top: 26px; text-align: center; font-weight: 800; font-size: 16px; display: flex; flex-wrap: wrap; gap: 8px 12px; justify-content: center; align-items: center; }
+        .price-path i { color: var(--ink-3); font-size: 13px; }
+        .price-path span { flex-basis: 100%; font-weight: 600; font-size: 14px; color: var(--ink-3); }
+
+        /* FAQ */
+        .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+        .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 0 24px; transition: box-shadow .2s; }
+        .faq details[open] { box-shadow: var(--shadow); }
+        .faq summary { cursor: pointer; list-style: none; padding: 22px 0; font-weight: 800; font-size: 17px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: "+"; font-family: var(--font-d); font-size: 22px; width: 34px; height: 34px; border-radius: 10px; background: var(--bg-2); display: grid; place-items: center; flex-shrink: 0; transition: transform .25s, background .25s; }
+        .faq details[open] summary::after { transform: rotate(45deg); background: var(--sun); }
+        .faq details p { padding: 0 0 22px; color: var(--ink-2); font-size: 15.5px; }
+
+        /* Contact */
+        .contact-bg { background: var(--green); position: relative; overflow: hidden; }
+        .contact-bg::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.07) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.07) 2px, transparent 2px); background-size: 48px 48px; }
+        .contact { position: relative; display: grid; gap: 36px; align-items: center; }
+        @media (min-width: 960px) { .contact { grid-template-columns: .9fr 1.1fr; gap: 56px; } }
+        .contact-text { color: #fff; }
+        .contact-text .lead { color: #dff3e4; margin-top: 16px; }
+        .contact-text ul { list-style: none; margin-top: 26px; display: grid; gap: 12px; font-weight: 700; }
+        .contact-text li { display: flex; gap: 12px; align-items: center; }
+        .contact-text li i { width: 30px; height: 30px; border-radius: 9px; background: rgba(255,255,255,.18); display: grid; place-items: center; font-size: 14px; flex-shrink: 0; }
+        .direct { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
+        .direct a { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25); color: #fff; padding: 10px 16px; border-radius: 12px; font-weight: 700; font-size: 14px; display: inline-flex; gap: 8px; align-items: center; transition: background .2s; }
+        .direct a:hover { background: rgba(255,255,255,.25); }
+
+        .form { background: #fff; border-radius: 28px; padding: clamp(24px, 4vw, 40px); box-shadow: 0 40px 80px -30px rgba(0,0,0,.45); }
+        .form h3 { font-size: 22px; margin-bottom: 4px; }
+        .form > p { color: var(--ink-3); font-size: 14.5px; margin-bottom: 22px; }
+        .row { display: grid; gap: 14px; margin-bottom: 14px; }
+        @media (min-width: 560px) { .row.two { grid-template-columns: 1fr 1fr; } }
+        .form label, .form legend { display: block; font-size: 14px; font-weight: 800; margin-bottom: 7px; }
+        .form label span, .form legend span { color: var(--ink-3); font-weight: 600; }
+        .form input[type=text], .form input[type=tel], .form input[type=number], .form select {
+            width: 100%; background: var(--bg); border: 2px solid var(--line); border-radius: 14px;
+            padding: 13px 15px; font-size: 16px; transition: border-color .2s, background .2s; appearance: none; -webkit-appearance: none;
+        }
+        .form select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233d4b5f' stroke-width='2' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; padding-right: 40px; }
+        .form input:focus, .form select:focus { outline: none; border-color: var(--green); background: #fff; }
+        .form .invalid { border-color: var(--coral) !important; }
+        fieldset { border: 0; margin-bottom: 14px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chips label { margin: 0; position: relative; }
+        .chips input { position: absolute; opacity: 0; pointer-events: none; }
+        .chips label span { display: inline-block; padding: 9px 14px; border-radius: 12px; border: 2px solid var(--line); background: var(--bg); font-size: 14px; font-weight: 700; color: var(--ink-2); cursor: pointer; transition: all .15s; }
+        .chips input:checked + span { background: var(--ink); border-color: var(--ink); color: #fff; }
+        .chips input:focus-visible + span { outline: 2px solid var(--green); outline-offset: 2px; }
+        .form .btn { width: 100%; margin-top: 8px; font-size: 17px; padding: 19px; }
+        .form .fine { font-size: 13px; color: var(--ink-3); text-align: center; margin-top: 14px; }
+
+        footer.site { background: var(--ink); color: #9aa6b8; padding: 40px 0 110px; font-size: 14px; }
+        @media (min-width: 760px) { footer.site { padding-bottom: 40px; } }
+        footer.site .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+        footer.site a:hover { color: #fff; }
+        footer.site .links { display: flex; gap: 18px; flex-wrap: wrap; }
+        footer.site .logo { color: #fff; font-size: 16px; }
+
+        /* Sticky mobile CTA */
+        .mcta { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; display: flex; gap: 10px; transform: translateY(140%); transition: transform .35s ease; }
+        .mcta.show { transform: none; }
+        .mcta .btn { flex: 1; padding: 15px 16px; box-shadow: 0 5px 0 var(--green-d), 0 16px 30px -8px rgba(15,27,45,.45); }
+        .mcta .tg { flex: 0 0 56px; background: var(--tg); color: #fff; border-radius: 16px; display: grid; place-items: center; font-size: 24px; box-shadow: 0 16px 30px -8px rgba(15,27,45,.45); }
+        @media (min-width: 760px) { .mcta { display: none; } }
+
+        /* Modal */
+        .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; }
+        .modal.open { display: flex; }
+        .modal-bg { position: absolute; inset: 0; background: rgba(15,27,45,.6); backdrop-filter: blur(4px); }
+        .modal-box { position: relative; background: #fff; border-radius: 28px; padding: 36px 30px; max-width: 420px; width: 100%; text-align: center; animation: pop .35s ease; }
+        .modal-box .em { font-size: 56px; margin-bottom: 10px; }
+        .modal-box h3 { font-size: 24px; margin-bottom: 10px; }
+        .modal-box p { color: var(--ink-2); margin-bottom: 24px; }
+        .modal-box .btn { width: 100%; }
+        .modal-box .btn + .btn { margin-top: 10px; }
+        @keyframes pop { from { transform: scale(.9); opacity: 0; } to { transform: none; opacity: 1; } }
+
+        /* Welcome: звідки дізналися */
+        .welcome { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(15,27,45,.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: opacity .35s; }
+        .welcome[hidden] { display: none; }
+        .welcome.closing { opacity: 0; }
+        .welcome-box { background: #fff; border-radius: 28px; padding: clamp(26px, 5vw, 38px); max-width: 480px; width: 100%; text-align: center; animation: pop .4s ease; box-shadow: 0 40px 80px -30px rgba(0,0,0,.5); }
+        .welcome-box .logo-mark { width: 52px; height: 52px; margin: 0 auto 18px; padding: 9px; display: grid; }
+        .welcome-box h3 { font-size: clamp(21px, 4vw, 25px); margin-bottom: 8px; }
+        .welcome-box p { color: var(--ink-2); font-size: 15.5px; margin-bottom: 22px; }
+        .src-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .src-grid button { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 14px 10px; border-radius: 14px; border: 2px solid var(--line); background: var(--bg); font-weight: 800; font-size: 15px; cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
+        .src-grid button i { font-size: 19px; }
+        .src-grid button:hover, .src-grid button:focus-visible { border-color: var(--green); background: var(--green-l); transform: translateY(-2px); outline: none; }
+        body.locked { overflow: hidden; }
+
+        /* Reveal */
+        .rv { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+        .rv.in { opacity: 1; transform: none; }
+        .rv-d1 { transition-delay: .08s; } .rv-d2 { transition-delay: .16s; } .rv-d3 { transition-delay: .24s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .rv { opacity: 1; transform: none; }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body>
 
-    <!-- FULLSCREEN WELCOME OVERLAY (Звітність про заходження) -->
-    <div id="welcome-overlay" class="fixed inset-0 z-[9999] bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-500">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-8 sm:p-10 text-center shadow-2xl border border-slate-100 transform transition-all animate-fade-in-up">
-            <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner">
-                <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <span class="text-xs font-bold px-3 py-1 rounded-full bg-brand-100 text-brand-700 uppercase tracking-wider">Вітаю на моєму сайті!</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3 mb-2">Звідки ви про мене дізналися?</h2>
-            <p class="text-slate-500 text-sm mb-8">Будь ласка, оберіть платформу, щоб продовжити перегляд:</p>
-            
-
-<div class="grid grid-cols-2 gap-3 mb-4">
-    <button onclick="trackSource('TikTok')" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-500 hover:bg-brand-50 transition-all font-bold text-slate-700 group text-sm sm:text-base">
-        <i class="fa-brands fa-tiktok text-lg sm:text-xl text-slate-800 group-hover:scale-110 transition-transform"></i> TikTok
-    </button>
-    <button onclick="trackSource('Instagram')" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-2xl border-2 border-slate-200 hover:border-pink-500 hover:bg-pink-50 transition-all font-bold text-slate-700 group text-sm sm:text-base">
-        <i class="fa-brands fa-instagram text-lg sm:text-xl text-pink-600 group-hover:scale-110 transition-transform"></i> Instagram
-    </button>
-    <button onclick="trackSource('Telegram')" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-2xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-all font-bold text-slate-700 group text-sm sm:text-base">
-        <i class="fa-brands fa-telegram text-lg sm:text-xl text-blue-500 group-hover:scale-110 transition-transform"></i> Telegram
-    </button>
-    <button onclick="trackSource('Інше / Рекомендація')" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-2xl border-2 border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all font-bold text-slate-700 group text-sm sm:text-base">
-        <i class="fa-solid fa-user-group text-lg sm:text-xl text-emerald-600 group-hover:scale-110 transition-transform"></i> Інше
-    </button>
-</div>
-        </div>
+    <div class="announce">
+        ⛏️ <b>Відкрито запис на пробний урок</b> з Minecraft Education. <a href="#contact">Записатися →</a>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 flex items-center justify-center text-white text-lg shadow-lg shadow-brand-500/30">
-                        <i class="fa-solid fa-graduation-cap"></i>
+    <header class="nav" id="nav">
+        <div class="wrap nav-in">
+            <a href="#top" class="logo" aria-label="BlokodSchool — на початок">
+                <span class="logo-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+                <span>Blokod<em>School</em><small>програмування в Minecraft</small></span>
+            </a>
+            <nav class="nav-links" aria-label="Розділи">
+                <a href="#program">Курси</a>
+                <a href="#genius">GENIUS Olympiad</a>
+                <a href="#about">Викладач</a>
+                <a href="#prices">Ціни</a>
+                <a href="#faq">Питання</a>
+            </nav>
+            <a href="#contact" class="btn btn-main btn-sm nav-cta">Записатися</a>
+        </div>
+    </header>
+
+    <main id="top">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="wrap hero-grid">
+                <div>
+                    <div class="pill rv"><span class="dot">🏆</span> Тренер дворазових переможців GENIUS Olympiad у США</div>
+                    <h1 class="rv rv-d1">Дитина грає в Minecraft? Навчимо її <mark>програмувати</mark> в ньому</h1>
+                    <p class="lead rv rv-d2"><strong>BlokodSchool</strong> — школа програмування в <strong>Minecraft Education</strong>. Дитина пише код, будує міста, механізми та міні-ігри, а заодно розвиває логіку, математичне мислення та впевненість у собі.</p>
+                    <div class="hero-cta rv rv-d3">
+                        <a href="#contact" class="btn btn-main">Записатися на пробний урок <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="https://t.me/kadukha_vitaliy" target="_blank" rel="noopener" class="btn btn-tg"><i class="fa-brands fa-telegram"></i> Запитати в Telegram</a>
                     </div>
-                    <span class="font-extrabold text-xl tracking-tight text-slate-900">Віталій Кадуха</span>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Про мене</a>
-                    <a href="#target" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Для кого</a>
-                    <a href="#achievements" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Досягнення</a>
-                    <a href="#services" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Послуги та Ціни</a>
-                    <a href="#contact" class="px-6 py-2.5 rounded-full bg-brand-600 text-white font-bold hover:bg-brand-700 shadow-md shadow-brand-500/20 transition-all hover:-translate-y-0.5">Записатися</a>
+                    <div class="hero-note rv rv-d3">
+                        <span><i class="fa-solid fa-circle-check"></i> 3 курси × 16 уроків</span>
+                        <span><i class="fa-solid fa-circle-check"></i> Можна з нуля</span>
+                        <span><i class="fa-solid fa-circle-check"></i> 100% практика</span>
+                    </div>
                 </div>
 
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-600 focus:outline-none p-2">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
+                <div class="scene rv rv-d2" aria-hidden="true">
+                    <div class="scene-bg"></div>
+                    <svg id="voxel" viewBox="0 0 100 100"></svg>
+                    <div class="coach-card">
+                        <img src="img/coach-team.jpg" alt="">
+                        <div><small>Ваш викладач</small><strong>Віталій Кадуха</strong></div>
+                    </div>
+                    <div class="code-card">
+                        <div class="cb c1">▶ при команді <b>build</b></div>
+                        <div class="cb c2">↻ повторити <b>4</b></div>
+                        <div class="cb c3">🤖 агент: вперед <b>5</b></div>
+                        <div class="cb c4">🧱 поставити блок</div>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <div class="trust">
+            <div class="wrap trust-in">
+                <div class="trust-item"><i class="fa-solid fa-trophy" style="color:#e0a100"></i> Тренер переможців GENIUS Olympiad 2024 і 2025 (США)</div>
+                <div class="trust-item"><i class="fa-solid fa-cubes" style="color:var(--green)"></i> Викладач онлайн-курсів Minecraft Education</div>
+                <div class="trust-item"><i class="fa-solid fa-award" style="color:var(--tg)"></i> Сертифікований тренер Малої академії наук</div>
+                <div class="trust-item"><i class="fa-solid fa-graduation-cap" style="color:var(--coral)"></i> Бакалавр інформатики з відзнакою</div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#about" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Про мене</a>
-                <a href="#target" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Для кого</a>
-                <a href="#achievements" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Досягнення</a>
-                <a href="#services" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Послуги та Ціни</a>
-                <a href="#contact" class="mobile-nav-link block text-center mt-4 px-4 py-3 rounded-xl text-base font-bold bg-brand-600 text-white shadow-md">Записатися на урок</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden relative bg-white">
-        <div class="absolute inset-0 z-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                
-                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-200 text-brand-700 font-bold text-xs sm:text-sm shadow-sm animate-fade-in-up">
-                        <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
-                        Сертифікований Тренер Малої Академії Наук
-                    </div>
-
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] animate-fade-in-up" style="animation-delay: 0.1s;">
-                        Перетворіть захоплення іграми на <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-accent-500">успішну IT-професію</span>
-                    </h1>
-
-                    <p class="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
-                        Допомагаю дітям розвинути логіку та алгоритмічне мислення за допомогою ігрового програмування: <strong class="text-slate-800">Scratch ➔ Minecraft Education ➔ Roblox Studio</strong>. Проєкти моїх учнів перемагають на міжнародних конкурсах.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center lg:justify-start pt-2 animate-fade-in-up" style="animation-delay: 0.3s;">
-                        <div class="flex items-center gap-2 text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
-                            <i class="fa-solid fa-check text-emerald-500"></i>
-                            <span class="font-bold text-sm">100% Практика</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
-                            <i class="fa-solid fa-trophy text-accent-500"></i>
-                            <span class="font-bold text-sm">Переможці в США</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
-                            <i class="fa-solid fa-graduation-cap text-brand-500"></i>
-                            <span class="font-bold text-sm">Досвід 4+ роки</span>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4 animate-fade-in-up" style="animation-delay: 0.4s;">
-                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-base shadow-xl shadow-brand-600/30 transition-all hover:-translate-y-1 text-center flex items-center justify-center gap-2">
-                            Записатися на урок <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="https://t.me/kadukha_vitaliy" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-base shadow-xl shadow-blue-500/30 transition-all hover:-translate-y-1 text-center flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-telegram text-xl"></i> Написати в Telegram
-                        </a>
-                    </div>
+        <!-- WHY MINECRAFT EDUCATION -->
+        <section>
+            <div class="wrap">
+                <div class="head rv">
+                    <div class="eyebrow">Чому саме Minecraft Education</div>
+                    <h2>Улюблена гра, але <mark>навчальна</mark> версія</h2>
+                    <p class="lead">Minecraft Education — це спеціальна освітня версія Minecraft від Microsoft. Її використовують у школах по всьому світу, щоб вчити дітей програмування, математики та інженерії.</p>
                 </div>
-
-                <div class="lg:col-span-5 relative mt-8 lg:mt-0 pb-8 sm:pb-0 animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="relative mx-auto max-w-sm lg:max-w-md">
-                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-accent-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-                        <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-brand-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" style="animation-delay: 2s;"></div>
-                        
-                        <div class="relative z-10 rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-white group">
-                            <img src="https://cdu.edu.ua/images/news/2024/13597/6-1.jpg" alt="Віталій Кадуха" class="w-full h-[420px] sm:h-[500px] object-cover object-top transition-transform duration-700 group-hover:scale-105">
-                            
-                            <div class="absolute bottom-6 left-[-10px] sm:left-[-20px] bg-white p-3 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-100 animate-bounce" style="animation-duration: 3s;">
-                                <div class="w-10 h-10 rounded-full bg-accent-50 text-accent-500 flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-medal"></i>
-                                </div>
-                                <div>
-                                    <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Тренер Чемпіонів</div>
-                                    <div class="text-slate-800 font-black text-sm">GENIUS Olympiad</div>
-                                </div>
-                            </div>
-
-                            <div class="absolute top-6 right-[-10px] sm:right-[-20px] bg-white p-2.5 rounded-2xl shadow-xl flex items-center gap-2 border border-slate-100">
-                                <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center">
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <div class="pr-2">
-                                    <div class="text-slate-800 font-black text-sm">5.0</div>
-                                    <div class="text-[10px] text-slate-500 font-bold uppercase">Рейтинг</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="why">
+                    <div class="why-card rv">
+                        <div class="ico" style="background:var(--green-l);color:var(--green-d)"><i class="fa-solid fa-heart"></i></div>
+                        <h3>Цікаво з першої хвилини</h3>
+                        <p>Не потрібно змушувати: дитина вже знає й любить цей світ, тож мотивація з'являється сама.</p>
                     </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- About & Benefits Section -->
-    <section id="about" class="py-20 bg-slate-50 border-t border-slate-200 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Що отримує ваша дитина на заняттях</h2>
-                <div class="h-1.5 w-20 bg-brand-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-slate-600 text-lg">Покроковий шлях від знайомства з кодом до створення складних власних проєктів.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-gamepad"></i>
+                    <div class="why-card rv rv-d1">
+                        <div class="ico" style="background:#e3f2fb;color:var(--tg)"><i class="fa-solid fa-code"></i></div>
+                        <h3>Справжнє програмування</h3>
+                        <p>У Code Builder діти пишуть код блоками, а потім переходять до текстових мов: JavaScript і Python.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">1. Початок зі Scratch</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Знайомство з базовою логікою та алгоритмами через створення перших захопливих анімацій та ігор.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-2xl bg-accent-50 text-accent-500 flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-cubes"></i>
+                    <div class="why-card rv rv-d2">
+                        <div class="ico" style="background:var(--sun-l);color:#b37f00"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Результат видно одразу</h3>
+                        <p>Написав код — і на очах виріс будинок, міст чи механізм. Так абстрактні речі стають зрозумілими.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">2. Minecraft Education</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Поглиблене вивчення програмування та початкова робототехніка в улюбленому світі, що потужно розвиває логіку.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">3. Roblox Studio</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Створення власних професійних ігор на платформі Roblox з використанням реальних скриптів та механік.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                <div class="lg:col-span-6 space-y-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-lg">
-                                <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900">Освіта та Кваліфікація</h3>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            <strong>Бакалавр з відзнакою</strong>, спеціальність «Середня освіта (Інформатика)» (Черкаський національний університет ім. Б. Хмельницького).
-                        </p>
+        <!-- BEFORE / AFTER -->
+        <section style="padding-top:0">
+            <div class="wrap">
+                <div class="head center rv">
+                    <div class="eyebrow">Навіщо це вашій дитині</div>
+                    <h2>Ті самі години в Minecraft, але <mark>з результатом</mark></h2>
+                </div>
+                <div class="ba">
+                    <div class="ba-card ba-before rv">
+                        <h3>😐 Зазвичай</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-xmark"></i> Годинами грає, але нічого нового не вчиться</li>
+                            <li><i class="fa-solid fa-xmark"></i> Математика здається нудною і «незрозуміло навіщо»</li>
+                            <li><i class="fa-solid fa-xmark"></i> Швидко втрачає інтерес до гуртків і занять</li>
+                            <li><i class="fa-solid fa-xmark"></i> Ви не знаєте, чим саме дитина зайнята за екраном</li>
+                        </ul>
                     </div>
-
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center text-lg">
-                                <i class="fa-solid fa-briefcase"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900">Досвід Викладання</h3>
-                        </div>
-                        <ul class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
-                                <span><strong>ФІМЛІ:</strong> Вчитель робототехніки та технологій (2023-2025)</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
-                                <span><strong>SMART UP:</strong> Вчитель інформатики, математики, програмування</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
-                                <span><strong>ЗМІСТОВНО:</strong> Вчитель технологій та інформатики</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
-                                <span><strong>Академія Покоління ІТ:</strong> Онлайн курси Minecraft Education</span>
-                            </li>
+                    <div class="ba-card ba-after rv rv-d1">
+                        <h3>🚀 У BlokodSchool</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Пише код, який будує міста, механізми й міні-ігри</li>
+                            <li><i class="fa-solid fa-check"></i> Розуміє координати X, Y, Z, цикли й логіку на практиці</li>
+                            <li><i class="fa-solid fa-check"></i> Чекає на урок, бо вчиться в улюбленому світі</li>
+                            <li><i class="fa-solid fa-check"></i> Наприкінці курсу захищає власний проєкт</li>
                         </ul>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-50 rounded-full opacity-50 pointer-events-none"></div>
-
-                    <div class="flex items-center justify-between mb-8 relative z-10">
-                        <h3 class="text-2xl font-extrabold text-slate-900">Професійний Стек</h3>
-                        <span class="text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-900 text-white">Hard Skills</span>
+        <!-- COURSES -->
+        <section class="dark" id="program">
+            <div class="wrap">
+                <div class="head rv">
+                    <div class="eyebrow">Програма навчання</div>
+                    <h2>3 курси: від першої команди до інженерних систем</h2>
+                    <p class="lead">Кожен курс складається з 16 уроків по 55 хвилин і завершується випускним проєктом. Усі учні починають з першого курсу і крок за кроком переходять до другого й третього.</p>
+                </div>
+                <div class="courses">
+                    <div class="course hot rv">
+                        <span class="tag">Старт тут</span>
+                        <div class="lvl"><span>🧱</span><div class="num">КУРС 1</div></div>
+                        <h3>Основи програмування та координати</h3>
+                        <p>Code Builder, блокове програмування, координати X, Y, Z, команди заповнення та перші системи.</p>
+                        <div class="meta"><b>16 уроків</b><b>Для новачків</b><b>Випускний проєкт</b></div>
+                        <details>
+                            <summary>Усі уроки курсу</summary>
+                            <ol>
+                                <li>Знайомство з курсом, правила, запуск коду</li>
+                                <li>Будуємо ферму руками, створюємо тварин кодом</li>
+                                <li>Координата X: рух вперед і назад</li>
+                                <li>Координати X та Y: вгору і вниз</li>
+                                <li>Координати X, Y, Z: заповнення блоками</li>
+                                <li>Контрольна робота</li>
+                                <li>Міні-ігри та вільне програмування</li>
+                                <li>Будинок кодом</li>
+                                <li>Сонячна система кодом</li>
+                                <li>Арена зомбі</li>
+                                <li>Власний проєкт на тему літа</li>
+                                <li>Аквапарк та водні гірки</li>
+                                <li>Паркур-челендж</li>
+                                <li>Підготовка до випускного проєкту</li>
+                                <li>Випускний проєкт</li>
+                                <li>Фінальна презентація та випуск</li>
+                            </ol>
+                        </details>
                     </div>
-                    
-                    <div class="space-y-6 relative z-10">
-                        <div>
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-cube text-brand-500"></i> Roblox Studio & Tinkercad 3D</span>
-                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
-                                <div class="bg-gradient-to-r from-brand-600 to-brand-400 h-full rounded-full" style="width: 100%"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-gamepad text-accent-500"></i> Scratch ➔ Minecraft Education</span>
-                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
-                                <div class="bg-gradient-to-r from-accent-600 to-accent-400 h-full rounded-full" style="width: 100%"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-robot text-emerald-500"></i> Початкова робототехніка (Minecraft)</span>
-                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
-                                <div class="bg-gradient-to-r from-emerald-500 to-emerald-400 h-full rounded-full" style="width: 100%"></div>
-                            </div>
-                            <p class="text-[10px] text-slate-500 mt-1 font-medium">* Потужний розвиток логіки та алгоритмічного мислення</p>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-calculator text-slate-500"></i> Математика та Інформатика</span>
-                                <div class="flex text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
-                                <div class="bg-gradient-to-r from-slate-600 to-slate-400 h-full rounded-full" style="width: 100%"></div>
-                            </div>
-                        </div>
+                    <div class="course rv rv-d1">
+                        <div class="lvl"><span>🏙️</span><div class="num">КУРС 2</div></div>
+                        <h3>Містобудування та інфраструктура</h3>
+                        <p>Проєктування цілого міста: планування карти, ландшафт, транспорт, Redstone та інтерактивні NPC.</p>
+                        <div class="meta"><b>16 уроків</b><b>Після курсу 1</b><b>Захист проєкту</b></div>
+                        <details>
+                            <summary>Усі уроки курсу</summary>
+                            <ol>
+                                <li>Вступний урок та концепція світу</li>
+                                <li>Планування і базова структура</li>
+                                <li>Будівлі та їх деталі</li>
+                                <li>Продовження будування міських об'єктів</li>
+                                <li>Ландшафт та природа</li>
+                                <li>Розширення паркових зон</li>
+                                <li>Міський транспорт</li>
+                                <li>Технології та інновації (Redstone)</li>
+                                <li>NPC: персонажі, що оживляють місто</li>
+                                <li>Громадські установи та екстрені служби</li>
+                                <li>Фермерство та сільське господарство</li>
+                                <li>Розвиток агрокомплексу</li>
+                                <li>Поєднання міських систем</li>
+                                <li>Перегляд проєкту та виправлення недоліків</li>
+                                <li>Підготовка випускного проєкту</li>
+                                <li>Захист проєкту, випуск</li>
+                            </ol>
+                        </details>
+                    </div>
+                    <div class="course rv rv-d2">
+                        <div class="lvl"><span>💎</span><div class="num">КУРС 3</div></div>
+                        <h3>Механізми, Redstone і логічні схеми</h3>
+                        <p>Інженерний курс: логічні ворота AND/OR/NOT, автоматизація ферм, командні блоки та смарт-будинки.</p>
+                        <div class="meta"><b>16 уроків</b><b>Після курсу 2</b><b>Інженерний проєкт</b></div>
+                        <details>
+                            <summary>Усі уроки курсу</summary>
+                            <ol>
+                                <li>Вступний урок та інженерні принципи</li>
+                                <li>Основи Redstone та компоненти</li>
+                                <li>Прості механізми</li>
+                                <li>Системи автоматизації та ферми</li>
+                                <li>Інтерактивні системи керування</li>
+                                <li>Складні логічні схеми (Logic Gates)</li>
+                                <li>Редстоун у транспорті та залізниці</li>
+                                <li>Механізовані будівлі (смарт-будинок)</li>
+                                <li>Командні блоки та автоматика</li>
+                                <li>NPC з логікою та тригерами</li>
+                                <li>Проєктування складних інженерних систем</li>
+                                <li>Робота над проєктом, частина 1</li>
+                                <li>Робота над проєктом, частина 2</li>
+                                <li>Робота над проєктом, частина 3</li>
+                                <li>Фіналізація проєкту та перевірка</li>
+                                <li>Захист проєкту та випуск</li>
+                            </ol>
+                        </details>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Target Audience Section -->
-    <section id="target" class="py-20 bg-white border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Для кого підійдуть заняття</h2>
-                <div class="h-1.5 w-20 bg-accent-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-slate-600 text-lg">Послідовне навчання: від перших кроків у Scratch до створення власних всесвітів у Roblox.</p>
+        <!-- PROJECTS -->
+        <section>
+            <div class="wrap">
+                <div class="head rv">
+                    <div class="eyebrow">Що створюють учні</div>
+                    <h2>Проєкти з реальних уроків</h2>
+                    <p class="lead">Це не гра заради гри. Кожен проєкт — задача з логіки, математики чи інженерії, яку дитина розв'язує кодом.</p>
+                </div>
+                <div class="projects">
+                    <div class="proj rv" style="background:#e8f0ff"><span class="em">🪐</span><div><b>Сонячна система кодом</b><small>Курс 1</small></div></div>
+                    <div class="proj rv rv-d1" style="background:var(--green-l)"><span class="em">🧟</span><div><b>Арена зомбі</b><small>Курс 1</small></div></div>
+                    <div class="proj rv rv-d2" style="background:#e1f5fb"><span class="em">🌊</span><div><b>Аквапарк з гірками</b><small>Курс 1</small></div></div>
+                    <div class="proj rv rv-d3" style="background:#fdeee1"><span class="em">🏃</span><div><b>Паркур-челендж</b><small>Курс 1</small></div></div>
+                    <div class="proj rv" style="background:var(--sun-l)"><span class="em">🚇</span><div><b>Місто з транспортом</b><small>Курс 2</small></div></div>
+                    <div class="proj rv rv-d1" style="background:#eaf6df"><span class="em">🌾</span><div><b>Агрокомплекс і ферми</b><small>Курс 2</small></div></div>
+                    <div class="proj rv rv-d2" style="background:#fde8e1"><span class="em">🏡</span><div><b>Смарт-будинок на Redstone</b><small>Курс 3</small></div></div>
+                    <div class="proj rv rv-d3" style="background:#ece7fb"><span class="em">🔌</span><div><b>Логічні схеми AND / OR</b><small>Курс 3</small></div></div>
+                </div>
+                <div class="platform-note rv">
+                    <div class="ico"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div>
+                        <h3>Своя навчальна платформа для учнів</h3>
+                        <p>Усі уроки, домашні завдання та готові коди зібрані на окремому сайті BlokodSchool. Дитина може повторити матеріал будь-коли, а ви бачите, що саме вона вивчає.</p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200">
-                    <div class="text-brand-600 font-bold text-sm mb-2">Етап 1</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-4">Scratch (Старт)</h3>
-                    <p class="text-slate-600 text-sm mb-6">Вивчення основ блокового програмування, створення анімацій та перших аркадних ігор.</p>
-                    <ul class="space-y-2 text-xs font-semibold text-slate-700">
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Розуміння циклів та умов</li>
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Перші робочі проєкти</li>
+        <!-- GENIUS OLYMPIAD -->
+        <section class="dark genius" id="genius">
+            <div class="wrap">
+                <div class="g-top">
+                    <div>
+                        <div class="eyebrow rv">Досягнення</div>
+                        <div class="g-big rv">2×<small>переможці<br>GENIUS Olympiad<br>у США</small></div>
+                        <h2 class="rv rv-d1" style="margin-top:22px;font-size:clamp(23px,3vw,34px)">Мої учні двічі поспіль перемогли на міжнародному фіналі в категорії «Робототехніка»</h2>
+                        <div class="g-what rv rv-d2">
+                            <b>Що таке GENIUS Olympiad?</b>
+                            <p>Міжнародна олімпіада шкільних проєктів. Фінал щороку проходить у місті Рочестер, штат Нью-Йорк (США), і збирає школярів з усього світу. В Україні національний етап проводить Мала академія наук. Потрапити до фіналу вже складно, а перемогти там ще складніше.</p>
+                            <div class="g-nums">
+                                <div><strong>69</strong><span>країн у 2025</span></div>
+                                <div><strong>1269</strong><span>учасників</span></div>
+                                <div><strong>🥇</strong><span>наше золото</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <figure class="g-photo-main rv rv-d1">
+                        <img src="img/usa-2025.jpg" alt="Команда CORE з прапором України на нагородженні GENIUS Olympiad 2025 у США" loading="lazy">
+                        <figcaption>Команда CORE на нагородженні GENIUS Olympiad 2025, Рочестер, США</figcaption>
+                    </figure>
+                </div>
+
+                <div class="g-wins">
+                    <article class="win rv">
+                        <div class="win-img"><span class="yr">2024</span><img src="img/coach-team.jpg" alt="Віталій Кадуха з учнями після перемоги на GENIUS Olympiad 2024" loading="lazy"></div>
+                        <div class="win-body">
+                            <h3>Перша перемога у фіналі в США</h3>
+                            <ul>
+                                <li><i class="fa-solid fa-trophy"></i> Перемога в категорії «Робототехніка» на міжнародному фіналі</li>
+                                <li><i class="fa-solid fa-location-dot"></i> Рочестер, штат Нью-Йорк, США</li>
+                                <li><i class="fa-solid fa-user-tie"></i> Тренер команди: Віталій Кадуха</li>
+                            </ul>
+                            <a class="src" href="https://www.ukr.net/news/details/sport/111923280.html" target="_blank" rel="noopener">Читати в ЗМІ <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+                    <article class="win rv rv-d1">
+                        <div class="win-img"><span class="yr">2025</span><img src="img/ukraine-final.jpg" alt="Команда CORE з роботом на GENIUS Olympiad Ukraine 2025" loading="lazy"></div>
+                        <div class="win-body">
+                            <h3>Гран-прі в Україні та золото в США</h3>
+                            <ul>
+                                <li><i class="fa-solid fa-crown"></i> Гран-прі національного етапу GENIUS Olympiad Ukraine</li>
+                                <li><i class="fa-solid fa-medal"></i> Золота медаль у категорії «Робототехніка» на міжнародному фіналі</li>
+                                <li><i class="fa-solid fa-users"></i> Команда CORE: Артем Зеленко та Роман Окіпняк (ФІМЛІ, Черкаси)</li>
+                            </ul>
+                            <a class="src" href="https://mon.gov.ua/news/ukrainski-shkoliari-zdobuly-17-nahorod-na-mizhnarodnii-olimpiadi-heniiv-u-ssha" target="_blank" rel="noopener">Новина на сайті МОН <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="g-strip">
+                    <figure class="rv"><img src="img/team-kyiv.jpg" alt="Команда CORE на національному етапі" loading="lazy" style="object-position:50% 25%"><figcaption>Національний етап, Київ</figcaption></figure>
+                    <figure class="rv rv-d1"><img src="img/robot.jpg" alt="Робот команди CORE на полі змагань" loading="lazy"><figcaption>Робот CORE на полі</figcaption></figure>
+                </div>
+
+                <div class="mini-ach">
+                    <a class="mini rv" href="https://www.firsttechchallenge.it/" target="_blank" rel="noopener">
+                        <div class="ic" style="background:rgba(240,100,60,.18);color:#ff9a7a"><i class="fa-solid fa-robot"></i></div>
+                        <div><b>FIRST Tech Challenge, Італія (2025)</b><span>Офіційний ментор команди «CORE UKRAINE» на чемпіонаті Італії</span></div>
+                    </a>
+                    <a class="mini rv rv-d1" href="https://infomatrix.ua/" target="_blank" rel="noopener">
+                        <div class="ic" style="background:rgba(47,158,68,.2);color:#7ee09a"><i class="fa-solid fa-microchip"></i></div>
+                        <div><b>INFOMATRIX UKRAINE (2024)</b><span>Керівник робототехнічного проєкту у фінальному етапі</span></div>
+                    </a>
+                </div>
+
+                <div class="g-meaning rv">
+                    <span class="em">💡</span>
+                    <p>Той самий підхід, що привів учнів до перемог у США, я використовую на уроках BlokodSchool: практика, власні проєкти та підтримка на кожному кроці.</p>
+                    <a href="#contact" class="btn btn-tg btn-sm" style="border:0">Записатися</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="wrap about">
+                <div class="about-photo rv">
+                    <img src="img/team-kyiv.jpg" alt="Віталій Кадуха з учнями" loading="lazy" style="object-position:50% 20%">
+                </div>
+                <div>
+                    <div class="eyebrow rv">Викладач</div>
+                    <h2 class="rv">Привіт, я Віталій Кадуха 👋</h2>
+                    <blockquote class="rv rv-d1">Я заснував BlokodSchool, щоб діти вчилися програмувати там, де їм справді цікаво. Коли дитина захоплена, вона сама тягнеться до знань, а моє завдання — спрямувати цей інтерес у правильний бік.</blockquote>
+                    <div class="timeline">
+                        <div class="tl rv"><i class="fa-solid fa-trophy"></i><div><b>Тренер команди CORE</b> <span>· переможці GENIUS Olympiad 2024 і 2025 у США</span></div></div>
+                        <div class="tl rv rv-d1"><i class="fa-solid fa-cubes"></i><div><b>Академія «Покоління ІТ»</b> <span>· онлайн-курси Minecraft Education</span></div></div>
+                        <div class="tl rv rv-d1"><i class="fa-solid fa-school"></i><div><b>ФІМЛІ</b> <span>· вчитель робототехніки та технологій (2023–2025)</span></div></div>
+                        <div class="tl rv rv-d2"><i class="fa-solid fa-graduation-cap"></i><div><b>Бакалавр з відзнакою</b> <span>· «Середня освіта (Інформатика)», ЧНУ ім. Б. Хмельницького</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW TO START -->
+        <section style="background:var(--bg-2)">
+            <div class="wrap">
+                <div class="head center rv">
+                    <div class="eyebrow">Пробний урок</div>
+                    <h2>Як почати навчання</h2>
+                    <p class="lead">Ви побачите, чи подобається дитині, ще до того, як оплачувати курс.</p>
+                </div>
+                <div class="steps">
+                    <div class="step rv"><h3>Анкета на сайті</h3><p>Заповніть коротку анкету нижче. Це займе менше хвилини.</p></div>
+                    <div class="step rv rv-d1"><h3>Я пишу вам</h3><p>Узгоджуємо зручний час, і я допомагаю підготувати Minecraft Education.</p></div>
+                    <div class="step rv rv-d2"><h3>Пробний урок</h3><p>Дитина пише свій перший код і бачить, як він будує світ.</p></div>
+                    <div class="step rv rv-d3"><h3>Старт курсу 1</h3><p>Обираєте абонемент на 8 або 16 занять, і дитина починає навчання.</p></div>
+                </div>
+                <div style="text-align:center;margin-top:36px" class="rv">
+                    <a href="#contact" class="btn btn-main">Заповнити анкету <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS (з'являється, коли в масиві REVIEWS є відгуки) -->
+        <section id="reviews" hidden>
+            <div class="wrap">
+                <div class="head center rv">
+                    <div class="eyebrow">Відгуки</div>
+                    <h2>Що кажуть батьки</h2>
+                </div>
+                <div class="reviews" id="reviews-list"></div>
+            </div>
+        </section>
+
+        <!-- PRICES -->
+        <section id="prices">
+            <div class="wrap">
+                <div class="head center rv">
+                    <div class="eyebrow">Вартість</div>
+                    <h2>Прозорі ціни без прихованих платежів</h2>
+                    <p class="lead">Навчання оплачується абонементом: на половину курсу або на весь курс. Кожне заняття триває 55 хвилин.</p>
+                </div>
+                <div class="region rv" role="tablist" aria-label="Країна проживання">
+                    <button type="button" role="tab" data-region="ua">🏠 Я з України</button>
+                    <button type="button" role="tab" data-region="world">🌍 Інша країна</button>
+                </div>
+                <div class="price-grid">
+                    <div class="plan light rv">
+                        <div class="pk">🧱 Половина курсу</div>
+                        <h3>8 занять</h3>
+                        <div class="sub">Перші 8 уроків курсу, щоб дитина освоїлась</div>
+                        <div class="old">&nbsp;</div>
+                        <div class="amount" data-price="8"></div>
+                        <div class="per" data-per="8"></div>
+                        <div class="incl">
+                            <div><i class="fa-solid fa-check"></i> 8 уроків по 55 хвилин</div>
+                            <div><i class="fa-solid fa-check"></i> Доступ до навчальної платформи з уроками та кодами</div>
+                            <div><i class="fa-solid fa-check"></i> Домашні завдання та зворотний зв'язок</div>
+                        </div>
+                        <a href="#contact" class="btn btn-ghost">Записатися на пробний урок</a>
+                    </div>
+                    <div class="plan rv rv-d1">
+                        <span class="tag">Найкращий вибір</span>
+                        <div class="pk">💎 Повний курс</div>
+                        <h3>16 занять</h3>
+                        <div class="sub">Весь курс від першого уроку до випускного проєкту</div>
+                        <div class="old"><s data-old="16"></s> <b class="save">−5%</b></div>
+                        <div class="amount" data-price="16"></div>
+                        <div class="per" data-per="16"></div>
+                        <div class="incl">
+                            <div><i class="fa-solid fa-check"></i> Усі 16 уроків курсу по 55 хвилин</div>
+                            <div><i class="fa-solid fa-check"></i> Доступ до навчальної платформи з уроками та кодами</div>
+                            <div><i class="fa-solid fa-check"></i> Домашні завдання та зворотний зв'язок</div>
+                            <div><i class="fa-solid fa-check"></i> Випускний проєкт і захист перед випуском</div>
+                        </div>
+                        <a href="#contact" class="btn btn-main">Записатися на пробний урок</a>
+                    </div>
+                </div>
+                <p class="price-path rv">🧱 Курс 1 <i class="fa-solid fa-arrow-right"></i> 🏙️ Курс 2 <i class="fa-solid fa-arrow-right"></i> 💎 Курс 3 <span>Усі починають з першого курсу</span></p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" style="background:var(--bg-2)">
+            <div class="wrap">
+                <div class="head center rv">
+                    <div class="eyebrow">Питання батьків</div>
+                    <h2>Часті запитання</h2>
+                </div>
+                <div class="faq">
+                    <details class="rv"><summary>Моя дитина ніколи не програмувала. Чи впорається?</summary><p>Так. Перший курс розрахований саме на новачків: від першого запуску коду до власного проєкту, все крок за кроком. Головне, щоб дитина вміла читати й любила Minecraft.</p></details>
+                    <details class="rv"><summary>Чим Minecraft Education відрізняється від звичайного Minecraft?</summary><p>Це окрема освітня версія від Microsoft. Вона має вбудований Code Builder, де діти програмують агента і будують світи кодом: блоками, JavaScript або Python. На уроках дитина не просто грає, а розв'язує задачі.</p></details>
+                    <details class="rv"><summary>Чи не призведе це до того, що дитина ще більше гратиме?</summary><p>На уроках дитина не грає, а створює. Багато батьків помічають, що інтерес зміщується з «пограти» на «зробити своє». Ми перетворюємо захоплення на корисну навичку.</p></details>
+                    <details class="rv"><summary>Що потрібно для занять?</summary><p>Комп'ютер або ноутбук, стабільний інтернет і навушники з мікрофоном. Як встановити Minecraft Education і отримати доступ, я підкажу перед першим уроком.</p></details>
+                    <details class="rv"><summary>Як я зрозумію, що дитина справді вчиться?</summary><p>Кожен курс завершується випускним проєктом, який дитина презентує. Крім того, всі уроки й домашні завдання є на навчальній платформі, тож ви завжди бачите, що вивчається.</p></details>
+                    <details class="rv"><summary>З якого курсу починає дитина?</summary><p>Усі учні починають з першого курсу, навіть якщо вже добре грають у Minecraft. Так у дитини складається міцна база, і далі вона поступово переходить до другого та третього курсів.</p></details>
+                    <details class="rv"><summary>Як відбувається оплата?</summary><p>Навчання оплачується абонементом: на 8 занять (половина курсу) або на 16 занять (повний курс). Кожне заняття триває 55 хвилин.</p></details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT / FORM -->
+        <section id="contact" class="contact-bg">
+            <div class="wrap contact">
+                <div class="contact-text">
+                    <h2 class="rv">Запишіть дитину на пробний урок</h2>
+                    <p class="lead rv rv-d1">Заповніть анкету, і я напишу вам протягом дня, щоб узгодити зручний час.</p>
+                    <ul class="rv rv-d2">
+                        <li><i class="fa-solid fa-check"></i> Перший код і перший результат уже на уроці</li>
+                        <li><i class="fa-solid fa-check"></i> Допомога з встановленням Minecraft Education</li>
+                        <li><i class="fa-solid fa-check"></i> Особисто обговоримо розклад і всі деталі</li>
                     </ul>
-                </div>
-
-                <div class="bg-slate-50 rounded-3xl p-8 border border-brand-300 shadow-md relative">
-                    <div class="absolute -top-3 right-6 bg-brand-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Хіт</div>
-                    <div class="text-brand-600 font-bold text-sm mb-2">Етап 2</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-4">Minecraft Education</h3>
-                    <p class="text-slate-600 text-sm mb-6">Початкова робототехніка та логіка. Автоматизація процесів, агенти та побудова алгоритмів у грі.</p>
-                    <ul class="space-y-2 text-xs font-semibold text-slate-700">
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Розвиток просторової логіки</li>
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Командна робота та квести</li>
-                    </ul>
-                </div>
-
-                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200">
-                    <div class="text-brand-600 font-bold text-sm mb-2">Етап 3</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-4">Roblox Studio</h3>
-                    <p class="text-slate-600 text-sm mb-6">Створення власних 3D-ігор, робота зі скриптами та публікація власних всесвітів для друзів.</p>
-                    <ul class="space-y-2 text-xs font-semibold text-slate-700">
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Скрипти та гейм-дизайн</li>
-                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Повноцінні комерційні навички</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="py-20 bg-slate-100 border-y border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Досягнення на Міжнародній Арені</h2>
-                <div class="h-1.5 w-20 bg-accent-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-slate-600 text-lg">Мої учні створюють проєкти, які перемагають на найпрестижніших світових конкурсах.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <a href="https://mon.gov.ua/news/ukrainski-shkoliari-zdobuly-17-nahorod-na-mizhnarodnii-olimpiadi-heniiv-u-ssha" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
-                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
-                    </div>
-                    <div class="relative h-40 overflow-hidden flex items-center justify-center text-center">
-                        <img src="https://osvita-cherkasy.gov.ua/wp-content/uploads/2025/04/photo_2025-04-03_10-11-37.jpg" alt="GENIUS 2025" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-brand-900/30 group-hover:bg-brand-900/10 transition-colors"></div>
-                        <div class="absolute top-2 right-2 z-10 bg-amber-400 text-slate-900 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wide">
-                            1 місце
-                        </div>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Київ / США (2025)</div>
-                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">GENIUS Olympiad 2025</h3>
-                            <p class="text-slate-500 text-xs mt-2">1 місце та Гран-прі. Публікація на сайті МОН України.</p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                            <span class="text-slate-400">mon.gov.ua</span>
-                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://www.firsttechchallenge.it/" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
-                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
-                    </div>
-                    <div class="relative h-40 bg-slate-800 overflow-hidden flex items-center justify-center p-6 text-center">
-                        <i class="fa-solid fa-robot text-6xl text-white group-hover:scale-110 transition-transform duration-500"></i>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Італія (2025)</div>
-                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">FIRST Tech Challenge</h3>
-                            <p class="text-slate-500 text-xs mt-2">Офіційний ментор команди "CORE UKRAINE" на Чемпіонаті Італії.</p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                            <span class="text-slate-400">Офіційний сайт</span>
-                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://www.ukr.net/news/details/sport/111923280.html" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
-                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
-                    </div>
-                    <div class="relative h-40 overflow-hidden flex items-center justify-center text-center">
-                        <img src="https://osvita-cherkasy.gov.ua/wp-content/uploads/2025/04/photo_2025-04-03_10-11-37_3.jpg" alt="GENIUS 2024" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-brand-900/30 group-hover:bg-brand-900/10 transition-colors"></div>
-                        <div class="absolute top-2 right-2 z-10 bg-accent-500 text-white px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wide">
-                            США
-                        </div>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Рочестер, США (2024)</div>
-                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">GENIUS Olympiad 2024</h3>
-                            <p class="text-slate-500 text-xs mt-2">Тренер команди переможців на глобальному фіналі (ЗМІ).</p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                            <span class="text-slate-400">ukr.net</span>
-                            <span class="text-brand-600">Читати <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://infomatrix.ua/" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-400 transition-all duration-300 flex flex-col group relative transform hover:-translate-y-1">
-                    <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur text-slate-800 p-2 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
-                    </div>
-                    <div class="relative h-40 bg-slate-800 overflow-hidden flex items-center justify-center p-6 text-center">
-                        <i class="fa-solid fa-microchip text-6xl text-emerald-400 group-hover:scale-110 transition-transform duration-500"></i>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wider mb-2">Київ (2024)</div>
-                            <h3 class="text-base font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">INFOMATRIX UKRAINE</h3>
-                            <p class="text-slate-500 text-xs mt-2">Керівник робототехнічного проєкту у фінальному етапі.</p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                            <span class="text-slate-400">infomatrix.ua</span>
-                            <span class="text-brand-600">Відкрити <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing & Services -->
-    <section id="services" class="py-20 bg-white border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Напрямки та Ціни</h2>
-                <div class="h-1.5 w-20 bg-brand-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-slate-600 text-lg">Прозоре ціноутворення в євро. Усі заняття тривають рівно 60 хвилин.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 text-center hover:border-brand-400 hover:shadow-xl transition-all relative overflow-hidden group">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-brand-600 mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-computer"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Інформатика</h3>
-                    <p class="text-sm text-slate-500 mb-4">Шкільна програма / 60 хв</p>
-                    <div class="text-3xl font-extrabold text-slate-900 mb-4">15€ <span class="text-xs font-normal text-slate-500">/ урок</span></div>
-                    <div class="border-t border-slate-200 pt-4 text-xs text-slate-600 space-y-1">
-                        <div>Абонемент 4 занять: <strong>60€</strong></div>
-                        <div>Абонемент 8 занять: <strong>114€ (-5%)</strong></div>
+                    <div class="direct rv rv-d3">
+                        <a href="https://t.me/kadukha_vitaliy" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> @kadukha_vitaliy</a>
+                        <a href="tel:+380979818242"><i class="fa-solid fa-phone"></i> +380 97 981 8242</a>
+                        <a href="mailto:kadukha.vitaliy@ukr.net"><i class="fa-solid fa-envelope"></i> Email</a>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 text-center hover:border-accent-400 hover:shadow-xl transition-all relative overflow-hidden group">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-accent-500 mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-cubes"></i>
+                <form class="form rv rv-d1" id="booking-form" novalidate>
+                    <h3>Анкета на пробний урок</h3>
+                    <p>Я відповім вам у Telegram або зателефоную</p>
+                    <div class="row two">
+                        <div><label for="f-name">Ваше ім'я</label><input id="f-name" name="name" type="text" autocomplete="given-name" required placeholder="Олена"></div>
+                        <div><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required value="+380" inputmode="tel"></div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Робототехніка (Minecraft)</h3>
-                    <p class="text-sm text-slate-500 mb-4">Логіка та агенти / 60 хв</p>
-                    <div class="text-3xl font-extrabold text-slate-900 mb-4">15€ <span class="text-xs font-normal text-slate-500">/ урок</span></div>
-                    <div class="border-t border-slate-200 pt-4 text-xs text-slate-600 space-y-1">
-                        <div>Абонемент 4 занять: <strong>60€</strong></div>
-                        <div>Абонемент 8 занять: <strong>114€ (-5%)</strong></div>
+                    <div class="row two">
+                        <div><label for="f-child">Ім'я дитини <span>(необов'язково)</span></label><input id="f-child" name="child" type="text" placeholder="Максим"></div>
+                        <div><label for="f-age">Вік дитини</label><input id="f-age" name="age" type="number" min="5" max="18" required placeholder="10" inputmode="numeric"></div>
                     </div>
-                </div>
-
-                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 text-center hover:border-emerald-400 hover:shadow-xl transition-all relative overflow-hidden group">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-emerald-500 mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-calculator"></i>
+                    <div class="row">
+                        <div><label for="f-tg">Telegram для зв'язку <span>(необов'язково)</span></label><input id="f-tg" name="tg" type="text" placeholder="@username"></div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Математика</h3>
-                    <p class="text-sm text-slate-500 mb-4">Підготовка / 60 хв</p>
-                    <div class="text-3xl font-extrabold text-slate-900 mb-4">20€ <span class="text-xs font-normal text-slate-500">/ урок</span></div>
-                    <div class="border-t border-slate-200 pt-4 text-xs text-slate-600 space-y-1">
-                        <div>Абонемент 4 занять: <strong>80€</strong></div>
-                        <div>Абонемент 8 занять: <strong>152€ (-5%)</strong></div>
-                    </div>
-                </div>
-
-                <div class="bg-brand-600 rounded-3xl p-6 sm:p-8 border border-brand-500 text-center shadow-xl relative overflow-hidden transform md:-translate-y-4">
-                    <div class="absolute top-0 right-0 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">TOP</div>
-                    <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl text-white mx-auto mb-6 backdrop-blur-sm">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Програмування</h3>
-                    <p class="text-sm text-brand-100 mb-4">Scratch ➔ Minecraft ➔ Roblox</p>
-                    <div class="text-3xl font-extrabold text-white mb-4">20€ <span class="text-xs font-normal text-brand-200">/ урок</span></div>
-                    <div class="border-t border-brand-500 pt-4 text-xs text-brand-100 space-y-1">
-                        <div>Абонемент 4 занять: <strong>80€</strong></div>
-                        <div>Абонемент 8 занять: <strong>152€ (-5%)</strong></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive Calculator -->
-            <div class="bg-slate-900 rounded-3xl p-8 lg:p-12 shadow-2xl relative overflow-hidden max-w-4xl mx-auto">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-500 via-accent-500 to-brand-500"></div>
-                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-brand-600 rounded-full mix-blend-overlay filter blur-3xl opacity-30 pointer-events-none"></div>
-                
-                <div class="text-center mb-10 relative z-10">
-                    <h3 class="text-2xl font-bold text-white mb-2"><i class="fa-solid fa-calculator text-accent-500 mr-2"></i>Калькулятор Абонемента</h3>
-                    <p class="text-slate-400 text-sm">Розрахуйте вартість місячного навчання (4 тижні)</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2">Оберіть напрямок:</label>
-                            <select id="calc-subject" onchange="calculateCost()" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors appearance-none cursor-pointer">
-                                <option value="15">Інформатика (15€ / 60 хв)</option>
-                                <option value="15">Робототехніка Minecraft (15€ / 60 хв)</option>
-                                <option value="20">Математика (20€ / 60 хв)</option>
-                                <option value="20" selected>Програмування: Scratch ➔ Minecraft ➔ Roblox (20€ / 60 хв)</option>
-                            </select>
+                    <fieldset>
+                        <legend>Досвід з Minecraft</legend>
+                        <div class="chips">
+                            <label><input type="radio" name="exp" value="Ще не грав(-ла)"><span>Ще не грав(-ла)</span></label>
+                            <label><input type="radio" name="exp" value="Грає для себе" checked><span>Грає для себе</span></label>
+                            <label><input type="radio" name="exp" value="Вже програмував(-ла)"><span>Вже програмував(-ла)</span></label>
                         </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2 flex justify-between">
-                                <span>Занять на тиждень:</span>
-                                <span id="freq-badge" class="text-accent-400 text-xs font-bold"></span>
-                            </label>
-                            <div class="grid grid-cols-3 gap-3">
-                                <button type="button" onclick="setFreq(1)" id="btn-freq-1" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">1 раз</button>
-                                <button type="button" onclick="setFreq(2)" id="btn-freq-2" class="freq-btn bg-brand-600 border border-brand-500 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors shadow-lg shadow-brand-500/20">2 рази</button>
-                                <button type="button" onclick="setFreq(3)" id="btn-freq-3" class="freq-btn bg-slate-800 border border-slate-700 text-white py-3 rounded-xl font-medium hover:bg-slate-700 transition-colors">3 рази</button>
-                            </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Де ви живете</legend>
+                        <div class="chips">
+                            <label><input type="radio" name="country" value="Україна"><span>В Україні</span></label>
+                            <label><input type="radio" name="country" value="Інша країна"><span>В іншій країні</span></label>
                         </div>
-                    </div>
-
-                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700 rounded-2xl p-6 flex flex-col justify-center items-center text-center">
-                        <div class="text-slate-400 text-sm mb-1 uppercase tracking-wider font-bold">Вартість за місяць (4 тижні)</div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <div id="calc-old-price" class="text-xl text-slate-500 line-through font-medium hidden">300€</div>
-                            <div class="text-5xl font-extrabold text-white"><span id="calc-total">160</span><span class="text-3xl text-brand-400">€</span></div>
-                        </div>
-                        <div id="calc-discount-msg" class="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-3 py-1 rounded-full mb-6 hidden">
-                            Знижка застосована
-                        </div>
-                        <a href="#contact" onclick="prefillForm()" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl transition-colors shadow-lg flex justify-center items-center gap-2">
-                            <i class="fa-solid fa-paper-plane"></i> Залишити заявку
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact / Form Section -->
-    <section id="contact" class="py-20 bg-slate-50">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
-                <div class="bg-brand-600 p-8 text-center text-white">
-                    <h2 class="text-3xl font-extrabold mb-2">Зв'яжіться зі мною</h2>
-                    <p class="text-brand-100">Залиште заявку, і я підберу ідеальний формат навчання для вашої дитини.</p>
-                </div>
-                
-                <form id="booking-form" onsubmit="submitForm(event)" class="p-8 sm:p-10 space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Ім'я батьків</label>
-                            <input type="text" id="form-name" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Телефон</label>
-                            <input type="tel" id="form-phone" value="+380" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Вік дитини</label>
-                            <input type="number" id="form-age" min="5" max="18" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all" placeholder="Наприклад: 10">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Клас</label>
-                            <input type="text" id="form-class" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all" placeholder="Наприклад: 5-Б">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Нік Telegram батьків</label>
-                            <div class="relative">
-                                <span class="absolute left-4 top-3.5 text-slate-400 font-bold">@</span>
-                                <input type="text" id="form-tg" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all" placeholder="username">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Цікавить напрямок</label>
-                            <select id="form-subject" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
-                                <option>Математика</option>
-                                <option>Інформатика</option>
-                                <option>Програмування (Scratch ➔ Minecraft ➔ Roblox)</option>
-                                <option>Початкова робототехніка (Minecraft Edu)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" id="submit-btn" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-0.5 flex justify-center items-center gap-2">
-                        Відправити Заявку <i class="fa-solid fa-check-circle"></i>
-                    </button>
-                    
-                    <div class="text-center text-sm font-semibold text-slate-600 mt-6 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-                        <a href="https://t.me/kadukha_vitaliy" target="_blank" class="flex items-center gap-2 hover:text-[#0088cc] transition-colors bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
-                            <i class="fa-brands fa-telegram text-[#0088cc] text-xl"></i> @kadukha_vitaliy
-                        </a>
-                        <a href="mailto:kadukha.vitaliy@ukr.net" class="flex items-center gap-2 hover:text-brand-600 transition-colors bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
-                            <i class="fa-solid fa-envelope text-brand-500 text-xl"></i> kadukha.vitaliy@ukr.net
-                        </a>
-                        <a href="tel:+380979818242" class="flex items-center gap-2 hover:text-brand-600 transition-colors bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
-                            <i class="fa-solid fa-phone text-brand-500 text-xl"></i> +380 97 981 8242
-                        </a>
-                    </div>
+                    </fieldset>
+                    <button type="submit" class="btn btn-main" id="submit-btn">Записатися на пробний урок <i class="fa-solid fa-arrow-right"></i></button>
+                    <p class="fine">Ваші дані потрібні лише для зв'язку і не передаються третім особам.</p>
                 </form>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>© 2025 Віталій Кадуха. Всі права захищено.</p>
+    <footer class="site">
+        <div class="wrap">
+            <div>
+                <div class="logo" style="margin-bottom:6px">Blokod<em>School</em></div>
+                © <span id="year">2026</span> · Школа програмування в Minecraft Education
+            </div>
+            <div class="links">
+                <a href="https://t.me/kadukha_vitaliy" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                <a href="tel:+380979818242">+380 97 981 8242</a>
+                <a href="mailto:kadukha.vitaliy@ukr.net">kadukha.vitaliy@ukr.net</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Success Modal -->
-    <div id="modal-success" class="fixed inset-0 z-[100] hidden items-center justify-center">
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeSuccessModal()"></div>
-        <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4 relative z-10 text-center shadow-2xl transform scale-100 transition-transform">
-            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center text-4xl text-emerald-500 mx-auto mb-6">
-                <i class="fa-solid fa-check"></i>
+    <div class="mcta" id="mcta">
+        <a href="#contact" class="btn btn-main">Записатися на пробний урок</a>
+        <a href="https://t.me/kadukha_vitaliy" target="_blank" rel="noopener" class="tg" aria-label="Написати в Telegram"><i class="fa-brands fa-telegram"></i></a>
+    </div>
+
+    <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
+        <div class="welcome-box">
+            <span class="logo-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+            <h3 id="welcome-title">Вітаємо в BlokodSchool! 👋</h3>
+            <p>Підкажіть, будь ласка, звідки ви про нас дізналися? Це допоможе нам ставати кращими.</p>
+            <div class="src-grid" id="src-grid">
+                <button type="button" data-src="TikTok"><i class="fa-brands fa-tiktok"></i> TikTok</button>
+                <button type="button" data-src="Instagram"><i class="fa-brands fa-instagram" style="color:#e1306c"></i> Instagram</button>
+                <button type="button" data-src="Telegram"><i class="fa-brands fa-telegram" style="color:var(--tg)"></i> Telegram</button>
+                <button type="button" data-src="Facebook"><i class="fa-brands fa-facebook" style="color:#1877f2"></i> Facebook</button>
+                <button type="button" data-src="YouTube"><i class="fa-brands fa-youtube" style="color:#ff0000"></i> YouTube</button>
+                <button type="button" data-src="Google"><i class="fa-brands fa-google" style="color:#4285f4"></i> Google</button>
+                <button type="button" data-src="Рекомендація знайомих"><i class="fa-solid fa-user-group" style="color:var(--green)"></i> Від знайомих</button>
+                <button type="button" data-src="Інше"><i class="fa-solid fa-ellipsis" style="color:var(--ink-3)"></i> Інше</button>
             </div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-2">Дякую за заявку!</h3>
-            <p class="text-slate-600 mb-8">Я отримав ваші контакти і зателефоную вам найближчим часом для узгодження деталей.</p>
-            <button onclick="closeSuccessModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition-colors">
-                Чудово
-            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-bg" data-close></div>
+        <div class="modal-box">
+            <div class="em">🎉</div>
+            <h3 id="modal-title">Заявку отримано!</h3>
+            <p>Дякую! Я напишу або зателефоную вам найближчим часом, щоб узгодити час пробного уроку.</p>
+            <a href="https://t.me/kadukha_vitaliy" target="_blank" rel="noopener" class="btn btn-tg"><i class="fa-brands fa-telegram"></i> Написати мені одразу</a>
+            <button type="button" class="btn btn-main" data-close>Чудово</button>
         </div>
     </div>
 
     <script>
-        // --- ФУНКЦІЯ ВІДСТЕЖЕННЯ ПЕРЕХОДУ НА САЙТ (SPLASH SCREEN) ---
-        async function trackSource(sourceName) {
-            const BOT_TOKEN = '8682189991:AAGsGtJ6tY_drdFlxg4eclzrrm1PSfCQaEw';
-            const CHAT_ID = '-5338754410';
+        // --- НАЛАШТУВАННЯ ---
+        const BOT_TOKEN = '8682189991:AAGsGtJ6tY_drdFlxg4eclzrrm1PSfCQaEw';
+        const CHAT_ID = '-5338754410';
+        // Ціна одного заняття: для України в гривнях, для інших країн у євро
+        const PRICES = {
+            ua:    { lesson: 400, cur: 'грн', label: 'Україна' },
+            world: { lesson: 10,  cur: '€',   label: 'Інша країна' }
+        };
+        const DISCOUNT_16 = 0.05; // знижка на повний курс (16 занять); 8 занять — без знижки
 
-            const visitText = `👁️ <b>Хтось перейшов на ваш сайт!</b>\n\n📌 <b>Джерело:</b> ${sourceName}`;
+        // Відгуки батьків. Додайте сюди реальні відгуки — і розділ "Що кажуть батьки" з'явиться автоматично.
+        // Приклад: { text: 'Син чекає кожного уроку...', name: 'Олена', child: 'мама Максима, 10 років' },
+        const REVIEWS = [];
 
-            // Ховаємо екран-заставку одразу
-            const overlay = document.getElementById('welcome-overlay');
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 500);
-
-            // Тихо відправляємо звіт у Telegram (не блокуючи користувача)
-            try {
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: visitText,
-                        parse_mode: 'HTML'
-                    })
-                });
-            } catch (err) {
-                console.log('Помилка трекінгу', err);
-            }
-        }
-
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 10) {
-                nav.classList.add('shadow-md');
-                nav.classList.replace('py-2', 'py-0');
-            } else {
-                nav.classList.remove('shadow-md');
-                nav.classList.replace('py-0', 'py-2');
-            }
-        });
-
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const links = document.querySelectorAll('.mobile-nav-link');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            const icon = btn.querySelector('i');
-            if(menu.classList.contains('hidden')){
-                icon.classList.replace('fa-xmark', 'fa-bars');
-            } else {
-                icon.classList.replace('fa-bars', 'fa-xmark');
-            }
-        });
-
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                btn.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+        function sendToTelegram(text) {
+            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML' })
             });
-        });
-
-        let currentFreq = 2;
-
-        function setFreq(freq) {
-            currentFreq = freq;
-            document.querySelectorAll('.freq-btn').forEach(b => {
-                b.classList.remove('bg-brand-600', 'border-brand-500', 'shadow-lg');
-                b.classList.add('bg-slate-800', 'border-slate-700');
-            });
-            const activeBtn = document.getElementById(`btn-freq-${freq}`);
-            activeBtn.classList.remove('bg-slate-800', 'border-slate-700');
-            activeBtn.classList.add('bg-brand-600', 'border-brand-500', 'shadow-lg');
-            calculateCost();
         }
 
-        function calculateCost() {
-            const priceElement = document.getElementById('calc-subject');
-            const pricePerLesson = parseInt(priceElement.value);
-            const baseMonthly = pricePerLesson * currentFreq * 4;
-            let finalCost = baseMonthly;
-            let discount = 0;
-            let badgeText = "";
-
-            if (currentFreq === 2) {
-                discount = 0.05;
-                badgeText = "-5%";
-            } else if (currentFreq === 3) {
-                discount = 0.10;
-                badgeText = "-10%";
-            }
-
-            finalCost = Math.round(baseMonthly * (1 - discount));
-
-            document.getElementById('calc-total').innerText = finalCost;
-            
-            const oldPriceEl = document.getElementById('calc-old-price');
-            const msgEl = document.getElementById('calc-discount-msg');
-            const badgeEl = document.getElementById('freq-badge');
-
-            if (discount > 0) {
-                oldPriceEl.innerText = `${baseMonthly}€`;
-                oldPriceEl.classList.remove('hidden');
-                msgEl.innerText = `Економія ${baseMonthly - finalCost}€ на місяць`;
-                msgEl.classList.remove('hidden');
-                badgeEl.innerText = badgeText;
-            } else {
-                oldPriceEl.classList.add('hidden');
-                msgEl.classList.add('hidden');
-                badgeEl.innerText = "";
-            }
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
         }
 
-        function prefillForm() {
-            const subjectSelect = document.getElementById('calc-subject');
-            const selectedText = subjectSelect.options[subjectSelect.selectedIndex].text.split('(')[0].trim();
-            const formSubject = document.getElementById('form-subject');
-            for(let i=0; i<formSubject.options.length; i++) {
-                if(formSubject.options[i].text.includes("Програмування") && selectedText.includes("Програмування")) {
-                    formSubject.selectedIndex = i;
-                    break;
-                } else if(formSubject.options[i].text.includes(selectedText)) {
-                    formSubject.selectedIndex = i;
-                    break;
+        // --- ВОКСЕЛЬНА СЦЕНА (малюється кодом, без картинок) ---
+        (function drawScene() {
+            const svg = document.getElementById('voxel');
+            const S = 26;
+            const C = {
+                grass: ['#7cc943', '#5a8f2e', '#4c7a27'],
+                dirt: ['#a8764a', '#8a5f3a', '#744f30'],
+                wood: ['#a57a4a', '#7d5a35', '#6a4b2c'],
+                leaf: ['#4caf50', '#3a8c3e', '#2f7533'],
+                water: ['#5ec4f2', '#3aa3d6', '#2d8bbb'],
+                gold: ['#ffd84d', '#e6b422', '#c99a12'],
+                diamond: ['#7ff0e6', '#3ccfc2', '#2aa99e'],
+                brick: ['#e2735a', '#c45a43', '#a84a36'],
+                agent: ['#9aa6b8', '#6f7b8e', '#5d687a']
+            };
+            const blocks = [];
+            const add = (x, y, z, t, cls) => blocks.push({ x, y, z, t, cls });
+            const water = new Set(['4,0', '4,1', '3,0']);
+            for (let x = 0; x < 5; x++) for (let y = 0; y < 5; y++) {
+                add(x, y, -1, 'dirt');
+                add(x, y, 0, water.has(x + ',' + y) ? 'water' : 'grass');
+            }
+            // дерево
+            add(0, 0, 1, 'wood'); add(0, 0, 2, 'wood');
+            [[0, 0], [1, 0], [0, 1], [1, 1]].forEach(([x, y]) => add(x, y, 3, 'leaf'));
+            add(0, 0, 4, 'leaf');
+            // будиночок, який будує агент
+            [[2, 2], [3, 2], [2, 3]].forEach(([x, y]) => add(x, y, 1, 'brick'));
+            add(2, 2, 2, 'brick'); add(3, 2, 2, 'gold');
+            add(0, 4, 1, 'diamond');
+            add(1, 4, 1, 'agent', 'agent');
+            add(3, 3, 2, 'gold', 'hover-blk');
+
+            blocks.sort((a, b) => (a.x + a.y) - (b.x + b.y) || a.z - b.z || a.x - b.x);
+            const pts = a => a.map(p => p.join(',')).join(' ');
+            let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+            const out = blocks.map(b => {
+                const cx = (b.x - b.y) * S, cy = (b.x + b.y) * S / 2 - b.z * S;
+                minX = Math.min(minX, cx - S); maxX = Math.max(maxX, cx + S);
+                minY = Math.min(minY, cy); maxY = Math.max(maxY, cy + 2 * S);
+                const [top, left, right] = C[b.t];
+                const T = [[cx, cy], [cx + S, cy + S / 2], [cx, cy + S], [cx - S, cy + S / 2]];
+                const L = [[cx - S, cy + S / 2], [cx, cy + S], [cx, cy + 2 * S], [cx - S, cy + 1.5 * S]];
+                const R = [[cx, cy + S], [cx + S, cy + S / 2], [cx + S, cy + 1.5 * S], [cx, cy + 2 * S]];
+                let g = `<polygon points="${pts(T)}" fill="${top}"/><polygon points="${pts(L)}" fill="${left}"/><polygon points="${pts(R)}" fill="${right}"/>`;
+                if (b.t === 'grass') {
+                    const k = S * 0.22;
+                    g = `<polygon points="${pts(T)}" fill="${top}"/>` +
+                        `<polygon points="${pts(L)}" fill="${C.dirt[1]}"/><polygon points="${pts(R)}" fill="${C.dirt[2]}"/>` +
+                        `<polygon points="${pts([L[0], L[1], [cx, cy + S + k], [cx - S, cy + S / 2 + k]])}" fill="${left}"/>` +
+                        `<polygon points="${pts([R[0], R[1], [cx + S, cy + S / 2 + k], [cx, cy + S + k]])}" fill="${right}"/>`;
                 }
-            }
+                if (b.t === 'diamond' || b.t === 'gold') {
+                    g += `<polygon points="${pts([[cx - 7, cy + S / 2], [cx, cy + S / 2 - 3.5], [cx + 7, cy + S / 2], [cx, cy + S / 2 + 3.5]])}" fill="#fff" opacity=".55"/>`;
+                }
+                if (b.cls === 'agent') {
+                    const ey = cy + S * 1.05;
+                    g += `<rect x="${cx + 5}" y="${ey - 2}" width="5" height="6" rx="1" fill="#fff"/><rect x="${cx + 14}" y="${ey - 6.5}" width="5" height="6" rx="1" fill="#fff"/>` +
+                         `<rect x="${cx + 6.5}" y="${ey}" width="2.5" height="3" fill="#0f1b2d"/><rect x="${cx + 15.5}" y="${ey - 4.5}" width="2.5" height="3" fill="#0f1b2d"/>`;
+                }
+                return `<g class="${b.cls || ''}" stroke="rgba(15,27,45,.10)" stroke-width="1" stroke-linejoin="round">${g}</g>`;
+            });
+            const cloud = (x, y, w) => `<g class="cloud" opacity=".95"><rect x="${x}" y="${y}" width="${w}" height="14" rx="3" fill="#fff"/><rect x="${x + w * .2}" y="${y - 9}" width="${w * .45}" height="12" rx="3" fill="#fff"/></g>`;
+            const pad = 20;
+            const vb = [minX - pad, minY - pad - 30, maxX - minX + pad * 2, maxY - minY + pad * 2 + 30];
+            svg.setAttribute('viewBox', vb.join(' '));
+            svg.innerHTML = cloud(vb[0] + 20, vb[1] + 34, 70) + cloud(vb[0] + vb[2] - 110, vb[1] + 70, 56) +
+                `<ellipse cx="0" cy="${maxY + 6}" rx="${(maxX - minX) * .42}" ry="16" fill="rgba(15,27,45,.12)"/>` + out.join('');
+        })();
+
+        // --- ДЖЕРЕЛО ПЕРЕХОДУ ---
+        // REFERRER визначається автоматично (можна додавати до посилань ?src=tiktok тощо),
+        // а CHOSEN — це те, що відвідувач сам обрав у вікні "Звідки ви про нас дізналися?".
+        function detectSource() {
+            const p = new URLSearchParams(location.search);
+            const tagged = p.get('src') || p.get('utm_source');
+            if (tagged) return tagged;
+            const ref = document.referrer.toLowerCase();
+            const map = { tiktok: 'TikTok', instagram: 'Instagram', 't.me': 'Telegram', telegram: 'Telegram', facebook: 'Facebook', 'fb.': 'Facebook', google: 'Google', youtube: 'YouTube' };
+            for (const k in map) if (ref.includes(k)) return map[k];
+            try { return ref ? new URL(document.referrer).hostname : 'Прямий перехід'; } catch (e) { return 'Невідомо'; }
+        }
+        const REFERRER = detectSource();
+        const IS_LOCAL = !/^https?:$/.test(location.protocol) || ['localhost', '127.0.0.1'].includes(location.hostname);
+        // Хештег для статистики в Telegram: #TikTok, #Рекомендація_знайомих
+        const hashtag = s => '#' + String(s).replace(/[^\p{L}\p{N}]+/gu, '_').replace(/^_|_$/g, '');
+
+        // Сайт відкрито з комп'ютера (файл або localhost) — повідомлення позначаються як тест
+        const TEST_MARK = IS_LOCAL ? '🧪 <b>ТЕСТ (сайт відкрито локально)</b>\n' : '';
+
+        let CHOSEN = null;
+        try { CHOSEN = localStorage.getItem('blokod-source'); } catch (e) {}
+
+        // Одне повідомлення про візит за сесію браузера
+        function visitAlreadySent() {
+            try {
+                if (sessionStorage.getItem('blokod-visit')) return true;
+                sessionStorage.setItem('blokod-visit', '1');
+            } catch (e) {}
+            return false;
         }
 
-        let isSubmitting = false;
+        const welcome = document.getElementById('welcome');
+        if (!CHOSEN) {
+            welcome.hidden = false;
+            document.body.classList.add('locked');
+            setTimeout(() => welcome.querySelector('button').focus({ preventScroll: true }), 400);
+        } else if (!visitAlreadySent()) {
+            // Людина вже обирала джерело раніше — повідомляємо про повторний візит
+            sendToTelegram(
+`${TEST_MARK}🔁 <b>Повторний візит на сайт BlokodSchool</b>
 
-        async function submitForm(e) {
+📌 <b>Звідки дізнався (раніше):</b> ${escapeHtml(CHOSEN)}
+🔗 <b>Перехід з:</b> ${escapeHtml(REFERRER)}
+
+#повторний_візит ${hashtag(CHOSEN)}`).catch(() => {});
+        }
+        document.getElementById('src-grid').addEventListener('click', e => {
+            const b = e.target.closest('button');
+            if (!b) return;
+            CHOSEN = b.dataset.src;
+            try { localStorage.setItem('blokod-source', CHOSEN); } catch (err) {}
+            welcome.classList.add('closing');
+            document.body.classList.remove('locked');
+            setTimeout(() => { welcome.hidden = true; }, 350);
+            visitAlreadySent();
+            sendToTelegram(
+`${TEST_MARK}👁️ <b>Хтось зацікавився і перейшов на сайт BlokodSchool!</b>
+
+📌 <b>Звідки дізнався:</b> ${escapeHtml(CHOSEN)}
+🔗 <b>Перехід з:</b> ${escapeHtml(REFERRER)}
+
+#відвідування ${hashtag(CHOSEN)}`).catch(() => {});
+        });
+
+        // --- НАВІГАЦІЯ ТА МОБІЛЬНА КНОПКА ---
+        const nav = document.getElementById('nav');
+        const mcta = document.getElementById('mcta');
+        let contactVisible = false;
+        new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; onScroll(); }, { threshold: 0.05 }).observe(document.getElementById('contact'));
+        function onScroll() {
+            nav.classList.toggle('scrolled', scrollY > 10);
+            mcta.classList.toggle('show', scrollY > 600 && !contactVisible);
+        }
+        addEventListener('scroll', onScroll, { passive: true });
+
+        // --- АНІМАЦІЯ ПОЯВИ ---
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+        // --- ВІДГУКИ ---
+        if (REVIEWS.length) {
+            document.getElementById('reviews-list').innerHTML = REVIEWS.map(r => `
+                <div class="review rv in">
+                    <div class="stars">★★★★★</div>
+                    <p>«${escapeHtml(r.text)}»</p>
+                    <footer>${escapeHtml(r.name)}<span>${escapeHtml(r.child || '')}</span></footer>
+                </div>`).join('');
+            document.getElementById('reviews').hidden = false;
+        }
+
+        // --- ЦІНИ АБОНЕМЕНТІВ ---
+        const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+        let REGION = /Kyiv|Kiev|Uzhgorod|Zaporozhye|Simferopol/.test(tz) ? 'ua' : 'world';
+        const fmt = n => (+n.toFixed(2)).toLocaleString('uk-UA');
+
+        function renderPrices() {
+            const p = PRICES[REGION];
+            const packPrice = n => p.lesson * n * (n === 16 ? 1 - DISCOUNT_16 : 1);
+            document.querySelectorAll('[data-price]').forEach(el => {
+                el.innerHTML = `${fmt(packPrice(+el.dataset.price))}<small>${p.cur}</small>`;
+            });
+            document.querySelectorAll('[data-per]').forEach(el => {
+                const n = +el.dataset.per;
+                el.textContent = `${fmt(packPrice(n) / n)} ${p.cur} за заняття · 55 хв`;
+            });
+            document.querySelectorAll('[data-old]').forEach(el => {
+                el.textContent = `${fmt(p.lesson * +el.dataset.old)} ${p.cur}`;
+            });
+            document.querySelectorAll('.region button').forEach(b => {
+                const on = b.dataset.region === REGION;
+                b.classList.toggle('on', on);
+                b.setAttribute('aria-selected', on);
+            });
+            const radio = document.querySelector(`input[name=country][value="${p.label}"]`);
+            if (radio) radio.checked = true;
+        }
+        document.querySelector('.region').addEventListener('click', e => {
+            const b = e.target.closest('button');
+            if (!b) return;
+            REGION = b.dataset.region;
+            renderPrices();
+        });
+        document.querySelectorAll('input[name=country]').forEach(r => r.addEventListener('change', () => {
+            REGION = Object.keys(PRICES).find(k => PRICES[k].label === r.value);
+            renderPrices();
+        }));
+        renderPrices();
+
+        // --- АНКЕТА → TELEGRAM ---
+        const form = document.getElementById('booking-form');
+        const submitBtn = document.getElementById('submit-btn');
+        let sending = false;
+
+        form.addEventListener('submit', async e => {
             e.preventDefault();
+            if (sending) return;
 
-            if (isSubmitting) return;
-            isSubmitting = true;
+            const fd = new FormData(form);
+            const f = Object.fromEntries(fd);
+            const bad = [];
+            if (!f.name.trim()) bad.push('f-name');
+            if (f.phone.replace(/\D/g, '').length < 9) bad.push('f-phone');
+            if (!f.age) bad.push('f-age');
+            form.querySelectorAll('.invalid').forEach(i => i.classList.remove('invalid'));
+            if (bad.length) {
+                bad.forEach(id => document.getElementById(id).classList.add('invalid'));
+                document.getElementById(bad[0]).focus();
+                return;
+            }
 
-            const BOT_TOKEN = '8682189991:AAGsGtJ6tY_drdFlxg4eclzrrm1PSfCQaEw';
-            const CHAT_ID = '-5338754410';
-
-            const name = document.getElementById('form-name').value;
-            const phone = document.getElementById('form-phone').value;
-            const age = document.getElementById('form-age').value;
-            const schoolClass = document.getElementById('form-class').value;
-            const parentTg = document.getElementById('form-tg').value;
-            const subject = document.getElementById('form-subject').value;
-
-            const text = `
-🆕 <b>Нова заявка на навчання!</b>
-
-👤 <b>Ім'я батьків:</b> ${name}
-📞 <b>Телефон:</b> ${phone}
-✈️ <b>Telegram батьків:</b> @${parentTg || 'не вказано'}
-👶 <b>Вік дитини:</b> ${age} років
-🏫 <b>Клас:</b> ${schoolClass}
-📚 <b>Напрямок:</b> ${subject}
-            `;
-
-            const submitBtn = document.getElementById('submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Відправка...';
+            sending = true;
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Відправляю...';
             submitBtn.disabled = true;
 
+            const tg = f.tg.trim().replace(/^@/, '');
+            const text =
+`${TEST_MARK}🧱 <b>Нова заявка BlokodSchool!</b>
+
+👤 <b>Батьки:</b> ${escapeHtml(f.name)}
+📞 <b>Телефон:</b> ${escapeHtml(f.phone)}
+✈️ <b>Telegram:</b> ${tg ? '@' + escapeHtml(tg) : 'не вказано'}
+👶 <b>Дитина:</b> ${escapeHtml(f.child || 'ім\'я не вказано')}, ${escapeHtml(f.age)} р.
+🎮 <b>Досвід з Minecraft:</b> ${escapeHtml(f.exp || 'не вказано')}
+🌍 <b>Де живуть:</b> ${escapeHtml(f.country || 'не вказано')}
+📌 <b>Звідки дізналися:</b> ${escapeHtml(CHOSEN || 'не вказано')}
+🔗 <b>Перехід з:</b> ${escapeHtml(REFERRER)}
+
+#заявка ${hashtag(CHOSEN || 'не_вказано')}`;
+
             try {
-                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: text,
-                        parse_mode: 'HTML'
-                    })
-                });
-
-                if (response.ok) {
-                    document.getElementById('modal-success').classList.remove('hidden');
-                    document.getElementById('modal-success').classList.add('flex');
-                    e.target.reset();
-                } else {
-                    alert('Помилка при відправці. Будь ласка, напишіть мені в Telegram напряму.');
-                }
-            } catch (error) {
-                alert('Помилка з\'єднання. Перевірте підключення до інтернету.');
+                const res = await sendToTelegram(text);
+                if (!res.ok) throw new Error();
+                form.reset();
+                renderPrices();
+                document.getElementById('modal').classList.add('open');
+            } catch (err) {
+                alert('Не вдалося відправити заявку. Будь ласка, напишіть мені в Telegram: @kadukha_vitaliy');
             } finally {
-                submitBtn.innerHTML = originalText;
+                submitBtn.innerHTML = original;
                 submitBtn.disabled = false;
-                isSubmitting = false;
+                sending = false;
             }
-        }
-
-        function closeSuccessModal() {
-            document.getElementById('modal-success').classList.add('hidden');
-            document.getElementById('modal-success').classList.remove('flex');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            calculateCost();
         });
+
+        document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => document.getElementById('modal').classList.remove('open')));
+        addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('modal').classList.remove('open'); });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
